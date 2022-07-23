@@ -18,7 +18,7 @@ Analog Input: Any Input device that measures a smoothly-changing value roughly p
 
 Half-Range Analog Input (HRAI): any Analog Input device with a default output at the extreme end of its range
 
-Digitized Half-Range Analog Input (DHRAI): an intermediate digital value changed when a HRAI's value exceeds a constant rising-edge threshold or drops below a constant falling-edge threshold.
+Digitized Half-Range Analog Input (DHRAI): an intermediate digital value changed when a HRAI's value exceeds a constant rising-edge threshold or drops below a constant falling-edge threshold
 
 Full-Range Analog Input: any Analog Input device with a default output not at either end of its range
 
@@ -30,7 +30,11 @@ Combined Analog Digital Input (CADI): An Analog Input device which over the cour
 
 Modifier Input: Any Digital Input or Digitized HRAI that, when actuated in combination with other Inputs, changes the behavior of an Analog Output or a Digital Trigger Output
 
-Dedicated Modifier Input: Any Modifier Input that influences no Outputs when actuated alone or in concert with other Dedicated Modifiers.
+Dedicated Modifier Input: Any Modifier Input that influences no Outputs when actuated alone or in concert with other Dedicated Modifiers
+
+Influence: to be one of the inputs used by the controller to determine the state of an Output.
+
+Control: to be the sole Input to Influence an Output.
 
 # General
 
@@ -46,7 +50,7 @@ If a game or match cannot be played out in full due to a controller malfunction 
 
 Generally, any layout of Inputs is permitted.
 
-Aside from Combined Analog Digital Inputs (CADI), Inputs must not share actuators in a way that makes it difficult or impossible to actuate one without actuating another.
+Aside from Combined Analog Digital Inputs (CADI) and orthogonal axes of a control stick Analog Input, Inputs must not share actuators in a way that makes it difficult or impossible to actuate one without actuating another.
 
 Inputs must not have two separate actuators that produce the same output. For example, you may not tie a string to an analog stick in order to move it using a different finger.
 
@@ -59,7 +63,7 @@ If any Input influences A, X, Y, Z, D-pad directions, or Start then it may not i
 If any Input influences B, L digital, or R digital, it may only influence others as a Modifier Input.
 
 Each Digital Output may be influenced by no more than one Input of any type.
-The one exception to this is that L Digital and R Digital may be disabled by a Modifier Input that modifies the Digital Input to output a fixed Analog Trigger Output for the corresponding Trigger.
+The one exception to this is that L Digital and R Digital may be disabled by a Dedicated Modifier Input that modifies the Digital Input to output a fixed Analog Trigger Output for the corresponding Trigger.
 
 Digital Outputs must be off in their default states regardless of what type of Input influences each one.
 
@@ -69,11 +73,13 @@ WHAT ABOUT MODIFIERS
 
 ## Analog Input, Digital Output
 
-The only type of Analog Input permitted to influence a Digital Output is a Digitized Half-Range Analog Input (DHRAI) such as the slider in GCC triggers, analog keyboard switches, or force-sensitive buttons.
+The only type of Analog Input permitted to influence a Digital Output is a Digitized Half-Range Analog Input (DHRAI) such as the slider in GCC triggers, position-sensing analog keyboard switches, or force-sensitive buttons.
 
 If a DHRAI is used as a Modifier for an Analog Output as well as the primary influence on a Digital Output, the DHRAI thresholds must be the same for both.
 
 If a Half-Range Analog Input used to influence a Digital Output is part of a Combined Analog Digital Input, the Digital Input part of the CADI must not influence any Outputs.
+
+If a DHRAI is used to influence the trigger
 
 # Analog Outputs
 
@@ -102,7 +108,7 @@ If either Analog Trigger Output is influenced by digital inputs, both Analog Tri
 ### Analog Input, Analog Output
 
 The Analog Trigger outputs may be influenced by Analog Inputs.
-The Analog Inputs may be the analog part of a CADI 
+The Analog Inputs may be the analog part of a CADI but if the digital part of the CADI is used it must 
 yoshi mode okay? limit to 49 (z-lightshield)
 
 ### Digital Input, Analog Output
