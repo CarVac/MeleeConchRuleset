@@ -2,6 +2,8 @@
 
 Input: A device that measures or detects movements/force from a user's body used to influence the Output
 
+Actuator: A part of an Input that a user interacts with in order to change the value read by that Input
+
 Output: A value sent from the controller to the game console
 
 Analog Output: Analog stick X and Y axes, C-stick X and Y axes, L and R analog
@@ -14,7 +16,7 @@ Analog Trigger Output: L or R Analog Outputs
 
 Digital Trigger Output: L or R Digital Outputs
 
-Analog Input: Any Input device that measures a smoothly-changing value roughly proportional to a physical position or applied force
+Analog Input: Any Input device that measures a smoothly-changing value roughly proportional to a physical position or applied force.
 
 Half-Range Analog Input (HRAI): any Analog Input device with a default output at the extreme end of its range
 
@@ -34,7 +36,7 @@ Dedicated Modifier Input: Any Modifier Input that influences no Outputs when act
 
 Influence: to be one of the inputs used by the controller to determine the state of an Output.
 
-Control: to be the sole Input to Influence an Output.
+/////Control: to be the sole Input to Influence an Output.
 
 # General
 
@@ -54,21 +56,25 @@ All communication between the controller and console must be either via wires or
 
 Generally, any layout of Inputs is permitted.
 
-Aside from Combined Analog Digital Inputs (CADI) and orthogonal axes of a control stick Analog Input, Inputs must not share actuators in a way that makes it difficult or impossible to actuate one without actuating another.
+Aside from Combined Analog Digital Inputs (CADI) and orthogonal axes of a control stick Analog Input, Inputs must not share Actuators in a way that makes it difficult or impossible to actuate one without actuating another.
 
-Inputs must not have two separate actuators that produce the same output. For example, you may not tie a string to an analog stick in order to move it using a different finger.
+Inputs must not have two separate Actuators that both influence the value read by that Input. For example, you may not tie a string to an analog stick in order to move it using a different finger.
+
+## Configuration
+
+These rules do not apply during a configuration mode which is not permitted for use during gameplay.
 
 # Digital Outputs
 
-Digital Outputs consist of A, B, X, Y, L digital, R digital, the four D-pad directions, and Start.
+Digital Outputs consist of A, B, X, Y, Z, L digital, R digital, the four D-pad directions, and Start.
 
-If any Input influences A, X, Y, Z, D-pad directions, or Start then it may not influence any other Output.
+If any Input influences A, X, Y, Z, D-pad directions, or Start Outputs, then it may not influence any other Output.
 
-If any Input influences B, L digital, or R digital, it may only influence others as a Modifier Input.
+If any Input influences B, L digital, or R digital Outputs, it may only influence other outputs as a Modifier Input.
 
 Each Digital Output may be influenced by no more than one Input of any type.
 The first exception is that Z may be influenced by up to two Inputs.
-The other exception to this is that L Digital and R Digital may be disabled by a Dedicated Modifier Input that modifies the Digital Input to output a fixed Analog Trigger Output for the corresponding Trigger.
+The other exception to this is that L Digital and R Digital may be disabled by a Dedicated Modifier Input that modifies the Digital Input to output only a fixed Analog Trigger Output for the corresponding Trigger.
 
 Digital Outputs must be off in their default states regardless of what type of Input influences each one.
 
@@ -84,11 +90,15 @@ If a DHRAI is used as a Modifier for an Analog Output as well as the primary inf
 
 If a Half-Range Analog Input used to influence a Digital Output is part of a Combined Analog Digital Input, the Digital Input part of the CADI must not influence any Outputs.
 
-If a DHRAI is used to influence the trigger
-
 # Analog Outputs
 
 ## Analog Stick Outputs
+
+### Analog Precision
+
+Any Full-Rage Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 256 digital readout levels over the Input range.
+
+Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 128 digital readout levels over the Input range.
 
 ### Both
 
@@ -108,24 +118,31 @@ When Z is held, the resulting lightshield is equivalent to the lightshield from 
 
 ### Analog Trigger General Rules
 
-If either Analog Trigger Output is influenced by digital inputs, both Analog Trigger Outputs must be influenced solely by digital inputs.
+If either Analog Trigger Output is influenced by Digital Inputs, both Analog Trigger Outputs must be influenced solely by Digital Inputs.
 
 ### Analog Input, Analog Output
 
-The Analog Trigger outputs may be influenced by Analog Inputs.
-The Analog Inputs may be the analog part of a CADI but if the digital part of the CADI is used it must 
+The Analog Trigger outputs may be influenced only by Half-Range Analog Inputs.
+
+The default Output must be 0.
+
+Any Analog Inputs used to influence the Analog Trigger Outputs must have a resolution of at least 64 digital readout levels over the Input range.
+
+The Analog Inputs may be the analog part of a CADI but if the digital part of the CADI is used it must Influence only the same trigger's Digital Output.
 
 yoshi mode okay? limit to 49 (z-lightshield)
 
 The relation between the Analog Trigger Input and the Analog Trigger Output must be linear from 0 to 49.
 
-ban pode emulation for this entirely: static mapping only between trigger input and trigger output
+The mapping between the value read by the Input and the Analog Trigger Output must be a static relation.
 
 ### Digital Input, Analog Output
 
-Each Analog Trigger Output may be influenced by at most a single standalone Digital Input, or a Modifier Input applied to 
+Each Analog Trigger Output may be influenced by at most a single standalone Digital Input, or a Modifier Input combined with the Digital Input corresponding to the same trigger's Digital Output.
 
-limit to 49 (z-lightshield)
+The Analog Trigger Output value must default to 0.
+
+The Analog Trigger Output value when influenced by Digital Inputs must be greater than or equal to 49.
 
 If a Digital Input used to influence an Analog Trigger Output is part of a Combined Analog Digital Input, the Analog Input part of the CADI must not influence any Outputs.
 
