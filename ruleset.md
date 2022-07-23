@@ -46,6 +46,10 @@ The TO is not required to abide by this request.
 If TOs are unable to determine that a controller is in full compliance, that controller may be banned at the TOs' sole discretion. 
 If a game or match cannot be played out in full due to a controller malfunction which cannot be fixed in a timely manner, and the player using the controller does not have a replacement controller readily available, the player may be disqualified at the sole discretion of TOs.
 
+## Communications
+
+All communication between the controller and console must be either via wires or encrypted wireless protocol.
+
 ## Input Layout
 
 Generally, any layout of Inputs is permitted.
@@ -63,7 +67,8 @@ If any Input influences A, X, Y, Z, D-pad directions, or Start then it may not i
 If any Input influences B, L digital, or R digital, it may only influence others as a Modifier Input.
 
 Each Digital Output may be influenced by no more than one Input of any type.
-The one exception to this is that L Digital and R Digital may be disabled by a Dedicated Modifier Input that modifies the Digital Input to output a fixed Analog Trigger Output for the corresponding Trigger.
+The first exception is that Z may be influenced by up to two Inputs.
+The other exception to this is that L Digital and R Digital may be disabled by a Dedicated Modifier Input that modifies the Digital Input to output a fixed Analog Trigger Output for the corresponding Trigger.
 
 Digital Outputs must be off in their default states regardless of what type of Input influences each one.
 
@@ -109,7 +114,12 @@ If either Analog Trigger Output is influenced by digital inputs, both Analog Tri
 
 The Analog Trigger outputs may be influenced by Analog Inputs.
 The Analog Inputs may be the analog part of a CADI but if the digital part of the CADI is used it must 
+
 yoshi mode okay? limit to 49 (z-lightshield)
+
+The relation between the Analog Trigger Input and the Analog Trigger Output must be linear from 0 to 49.
+
+ban pode emulation for this entirely: static mapping only between trigger input and trigger output
 
 ### Digital Input, Analog Output
 
