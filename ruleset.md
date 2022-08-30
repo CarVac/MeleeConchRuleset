@@ -104,6 +104,8 @@ Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must hav
 
 ### Control Stick
 
+…it should be permissible to greatly stretch the output of input regions that originally existed fully in the melee deadzone, to handle worn firefox notches.
+
 ### C-Stick
 
 ## Analog Trigger Outputs
