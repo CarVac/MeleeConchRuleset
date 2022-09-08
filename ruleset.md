@@ -78,6 +78,8 @@ The other exception to this is that L Digital and R Digital may be disabled by a
 
 Digital Outputs must be off in their default states regardless of what type of Input influences each one.
 
+Each Digital Output must not have any delayed response to any change in the state of any Input that influences it.
+
 ## Digital Input, Digital Output
 
 WHAT ABOUT MODIFIERS
