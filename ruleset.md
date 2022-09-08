@@ -104,6 +104,48 @@ Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must hav
 
 ### Both
 
+#### Analog Input, Analog Stick Outputs
+
+#### Digital Input, Analog Stick Outputs
+
+The following Analog Stick coordinates must not be accessible using Digital Inputs:
+
+1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. Explanation: these represent the two values in each axis that separate cardinals from quadrants, which enable a variety of techniques such as the steepest/shallowest angles, "middle-tilted" tilts and smash attacks, tap jump short hop with the stick outside the deadzone, and double jumping backwards with Yoshi, Jigglypuff, and Kirby without turning around.
+2. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be accessible while |X| < 0.7000.
+3. Directional Airdodge Angles: While either Digital L or Digital R outputs are active, all output coordinates must meet one of the following three criteria:
+  * 23° <= atan(|Y/X|) <= 67° (within the permissible angle range)
+  * |X| < 0.2875 (within the X deadzone)
+  * |Y| < 0.2875 (within the Y deadzone)
+4. Ice Climbers Desyncs:
+  * Analog Stick
+    * X = ±0.8000: Popo Smash/Nana Tilt
+    * Y = ±0.6625: Popo Smash/Nana Tilt
+    * X = ±0.7000: Popo Roll
+    * Y = -0.7000: Popo Spotdodge/Nana Shield Drop
+    * X = ±0.6250: Popo Run/Nana Runbrake
+    * X = ±0.7500: Popo Teeter Break/Nana Teeter
+    * Y = +0.5625: Popo Jump out of Dash
+    * |X| <= 0.5875, Y = -0.5500: Nana Neutral-B, (TODO: popo what? down-b?)
+    * X = +0.5250, Y = +0.6250: two different aerials (TODO: positive X only?)
+    * X = -0.4375, Y = +0.5250: two different aerials (TODO: negative X only?)
+  * C-Stick
+    * X = ±0.8000: Popo Smash
+    * Y = ±0.6625: Popo Smash
+    * X = ±0.7000: Popo Roll
+    * X = -0.7000: Popo Spotdodge
+    * Y = +0.6625: Popo Jump out of Shield
+    * X = +0.5250, Y = +0.6250: two different aerials (TODO: positive X only?)
+    * X = -0.4375, Y = +0.5250: two different aerials (TODO: negative X only?)
+5. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
+  * atan(|Y/X|) <= 50° (forward tilt) (TODO: is this < or <=? Is the angle right?)
+  * |Y| > ??? (produce a tap jump)
+  * |X| < 0.2875 (within the X deadzone)
+6. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
+  * X = ±0.5000, Y = 0
+  * X = 0,       Y = ±0.5000
+  * X = ±0.4000, Y = ±0.3000
+  * X = ±0.3000, Y = ±0.4000
+
 ### Control Stick
 
 …it should be permissible to greatly stretch the output of input regions that originally existed fully in the melee deadzone, to handle worn firefox notches.
@@ -146,7 +188,7 @@ Each Analog Trigger Output may be influenced by at most a single standalone Digi
 
 The Analog Trigger Output value must default to 0.
 
-The Analog Trigger Output value when influenced by Digital Inputs must be greater than or equal to 49.
+The Analog Trigger Output value when influenced by Digital Inputs must not be from 43 to 48 inclusive.
 
 If a Digital Input used to influence an Analog Trigger Output is part of a Combined Analog Digital Input, the Analog Input part of the CADI must not influence any Outputs.
 
