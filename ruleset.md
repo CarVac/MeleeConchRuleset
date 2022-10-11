@@ -96,6 +96,12 @@ If a Half-Range Analog Input used to influence a Digital Output is part of a Com
 
 ## Analog Stick Outputs
 
+Each Analog Stick Output may be influenced only by one of the following choices:
+
+1. Two Full-Range Analog Inputs either combined as in a control stick or separate single-axis ones.
+2. Four Half-Range Analog Inputs, with two influencing each direction. HOW DO YOU DEAL WITH DIAGONALS AND STUFF
+3. Four Digital Inputs or DHRAI, with additional Modifiers.
+
 ### Analog Precision
 
 Any Full-Rage Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 256 digital readout levels over the Input range.
@@ -105,6 +111,8 @@ Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must hav
 ### Both
 
 #### Analog Input, Analog Stick Outputs
+
+Analog Stick outputs may be influenced by 
 
 #### Digital Input, Analog Stick Outputs
 
@@ -149,8 +157,11 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 ### Control Stick
 
 …it should be permissible to greatly stretch the output of input regions that originally existed fully in the melee deadzone, to handle worn firefox notches.
+This would ordinarily result in a zone that is easier to skip, but we can restrict it to be purely circumferential remapping.
 
 ### C-Stick
+
+no stretching of 
 
 ## Analog Trigger Outputs
 
