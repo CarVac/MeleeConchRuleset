@@ -24,9 +24,11 @@ Digitized Half-Range Analog Input (DHRAI): an intermediate digital value activat
 
 Full-Range Analog Input: any Analog Input device with a default output not at either end of its range
 
-Nonreturning Analog Input: any Analog Input device that does not automatically return to a default output
+Nonreturning Analog Input: any Analog Input device that does not automatically return to a default output (ex. physical volume slider)
 
-Digital Input: Any Input device that produces exactly two possible values according to a physical position or applied force
+Two-Axis Analog Input: any Analog Input device which consists of two independently-controllable Full-Range Analog Inputs that share an Actuator (ex. analog stick)
+
+Digital Input: Any Input device that produces exactly two possible values according to a physical position or applied force (ex. button)
 
 Combined Analog Digital Input (CADI): An Analog Input device which over the course of its travel activates an electrically distinct Digital Input (ex. GCC triggers)
 
@@ -62,7 +64,9 @@ Inputs must not have two separate Actuators that both influence the value read b
 
 ## Configuration
 
-These rules do not apply during a configuration mode which is not permitted for use during gameplay.
+These rules do not apply during any configuration mode that uses the controller outputs to display settings.
+
+Any such configuration modes are not permitted for use during gameplay.
 
 # Digital Outputs
 
@@ -82,7 +86,7 @@ Each Digital Output must not have any delayed response to any change in the stat
 
 ## Digital Input, Digital Output
 
-WHAT ABOUT MODIFIERS
+Modifiers may only influence Digital Outputs on triggers in the case that the modifier disables the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger.
 
 ## Analog Input, Digital Output
 
@@ -98,70 +102,144 @@ If a Half-Range Analog Input used to influence a Digital Output is part of a Com
 
 Each Analog Stick Output may be influenced only by one of the following choices:
 
-1. Two Full-Range Analog Inputs either combined as in a control stick or separate single-axis ones.
-2. Four Half-Range Analog Inputs, with two influencing each direction. HOW DO YOU DEAL WITH DIAGONALS AND STUFF
-3. Four Digital Inputs or DHRAI, with additional Modifiers.
+1. One Two-Axis Analog Input
+2. Two Full-Range Analog Inputs, one for each Analog Stick Output axis.
+3. Four Half-Range Analog Inputs, with two influencing each direction.
+4. Four Digital Inputs or DHRAI, optionally with additional Modifiers.
 
-### Analog Precision
+Pairs of Half-Range Analog Inputs (HRAI), each used to influence one Analog Stick Output axis, must use average SOCD with one HRAI mapped to the range from (<=-1 to 0) and one ranging from (0 to >=1).
+
+Analog Inputs may not be used together with Digital Inputs for any given Analog Stick, even for different axes, but one Analog Stick may be fully analog while the other is fully digital.
+
+### Analog Input Precision and Linearization
 
 Any Full-Rage Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 256 digital readout levels over the Input range.
 
 Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 128 digital readout levels over the Input range.
 
-### Both
+If and only if the relation between the motion of an Analog Input's Actuator and the value it measures is nonlinear, the value must be linearized before being presented to the console as an Analog Output.
+This linearization must be a static mapping.
+For example, a stick with its position read by a Hall Effect sensor must have linearization performed, while a linear potentiometer must *not* have linearization performed.
 
-#### Analog Input, Analog Stick Outputs
+As an exception to the linearization rule, OEM first-party or second-party controllers that have developed nonlinearity in potentiometers are not required to have their output linearized (due to the inability to do so).
 
-Analog Stick outputs may be influenced by 
+### Analog Input, Analog Stick Outputs
 
-#### Digital Input, Analog Stick Outputs
+Remapping Distance Restriction: Aside from duplicating global coordinate shifts equivalent to initializing an OEM controller with an off-center stick, no input coordinate, after linearization, may be mapped to an output coordinate more than 18 Melee coordinate units away in a tangential direction, or more than 2 Melee coordinate units away in a radial direction, after applying normalization to fit within the 80-unit radius circle.
+Any such coordinate remapping must be static.
+This restriction exists to prevent modifications of the coordinate grid that make the game easier to play, while allowing adjustments to notches so that they may perform their intended function even when they are physically worn down.
 
-The following Analog Stick coordinates must not be accessible using Digital Inputs:
+Coordinate Snapping/Accessibility Restriction: The region of linearized Input coordinates corresponding to a given Output coordinate must not have its bounding box dimensions differ from the dimensions of the output coordinate by more than 30%, whether stretched or compressed.
+This restriction exists to prevent coordinate remapping that makes it easy to pinpoint specific values or that prevents you from ever outputting certain coordinates.
 
-1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. Explanation: these represent the two values in each axis that separate cardinals from quadrants, which enable a variety of techniques such as the steepest/shallowest angles, "middle-tilted" tilts and smash attacks, tap jump short hop with the stick outside the deadzone, and double jumping backwards with Yoshi, Jigglypuff, and Kirby without turning around.
-2. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be accessible while |X| < 0.7000.
-3. Directional Airdodge Angles: While either Digital L or Digital R outputs are active, all output coordinates must meet one of the following three criteria:
+EXCEPTION: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
+This exception does not allow a violation of radial remapping distance restrions.
+This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.
+This is not intended to allow, for example, an across-the-board remapping of deadzone values near Y = +0.2875 to be mapped to Y = +0.2875 to make uptilts easier.
+
+EXCEPTION: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped to 0 even if that violates distance restrictions or if this results in inaccessible output coordinates.
+This exception is to allow third-party controllers to make 1.0 magnitude cardinals more accessible with analog sticks.
+
+EXCEPTION: Linearized Input coordinates with |X| <= 5 and |Y| <= 5 may be mapped to the origin.
+This exception allows controllers to make the origin initialization more consistent.
+
+Digital Input Filtering: All digital filtering, or processing, of Analog Inputs for a given Analog Stick must completely ignore all other Inputs on the controller.
+If the filter output does not correspond directly to the filter input, the output shall be either stationary, moving towards, or accelerating towards the input to the filter.
+
+Filters must be composed of weighted sums of the following values:
+
+* current and one-iteration previous input position in the same axis as the output being processed
+* current and one-iteration previous input velocity in the same axis as the output being processed
+* current and one-iteration previous intermediate filter values in the same axis as the output being processed
+* one-iteration previous filtered output in the axis being processed.
+
+The weights of these terms may be either constant or non-constant.
+Non-constant weights may vary according to axisymmetric and otherwise monotonic functions of:
+
+* current input position in the axis being processed
+* current input velocity in the axis being processed
+* current input acceleration in the axis being processed
+* current difference between input position and previous output position
+* current input radius away from the origin (the only permitted cross-axis interaction)
+
+A simple windowed median filter is also permitted, despite not meeting the above requirements.
+
+Permitted filters include but are not limited to:
+1. Hysteresis
+2. Median
+3. PhobGCC Smart Snapback Filter
+4. PhobGCC Waveshaping
+5. Simple low-pass filtering
+6. "energy-state tracking low-pass filter" (may need more rule tweaking once we know more about how it's implemented)
+
+Illegal filters include but are not limited to:
+1. Timer-based pode emulation
+2. Timer-based dashback out of crouch enhancement
+3. Timer-based empty pivot enhancement
+4. Angle- and timer-based ledgedash enhancement
+
+Filters may be linearly chained so that the output of one is used as the input to the next.
+
+### Digital Input, Analog Stick Outputs
+
+The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick
+
+1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. These are on the quadrant boundaries and enable the steepest/shallowest angles, "mid-angle" tilts and smashes, tap jump short hop with the stick outside of the deadzone, and double-jumping backwards with Yoshi/Jigglypuff/Kirby without turning around.
+
+#### Digital Input, Control Stick Output
+
+The following Control Stick coordinates must not be accessible using Digital Inputs:
+
+1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be accessible while |X| < 0.7000.
+2. Directional Airdodge Angles: While either Digital L or Digital R outputs are active, all output coordinates must meet one of the following three criteria:
   * 22.96° < atan(|Y/X|) < 67.04° (within the permissible angle range) (NOTE: This was 23-67 in the SWT ruleset, but b0xx firefox angles are 22.96377... degrees; b0xx uses 30.46554... degree wavedash angles)
   * |X| < 0.2875 (within the X deadzone)
   * |Y| < 0.2875 (within the Y deadzone)
-4. Ice Climbers Desyncs:
-  * Analog Stick
-    * X = ±0.8000: Popo Smash/Nana Tilt
-    * Y = ±0.6625: Popo Smash/Nana Tilt
-    * X = ±0.7000: Popo Roll
-    * Y = -0.7000: Popo Spotdodge/Nana Shield Drop (TODO: is this important for the SWT ruleset given that UCF will make both shield drop?)
-    * X = +0.6250: Popo Run/Nana Runbrake
-    * X = +0.7500: Popo Teeter Break/Nana Teeter
-    * Y = +0.5625: Popo Jump out of Dash
-    * |X| <= 0.5875, Y = -0.5500: Grounded Nana Neutral-B, Popo Up/Down-B
-    * X = +0.5250, Y = +0.6250: two different aerials (TODO: positive X only?)
-    * X = -0.4375, Y = +0.5250: two different aerials (TODO: negative X only?)
-  * C-Stick
-    * X = ±0.8000: Popo Smash
-    * Y = ±0.6625: Popo Smash
-    * X = ±0.7000: Popo Roll
-    * X = -0.7000: Popo Spotdodge
-    * Y = +0.6625: Popo Jump out of Shield
-    * X = +0.5250, Y = +0.6250: two different aerials (TODO: positive X only?)
-    * X = -0.4375, Y = +0.5250: two different aerials (TODO: negative X only?)
-5. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
+3. Ice Climbers Desyncs:
+  * X = ±0.8000: Popo Smash/Nana Tilt
+  * Y = ±0.6625: Popo Smash/Nana Tilt
+  * X = ±0.7000: Popo Roll EXCEPT FOR Y = ±0.7000
+  * Y = -0.7000: Popo Spotdodge/Nana Shield Drop EXCEPT FOR X = ±0.7000
+  * X = +0.6250: Popo Run/Nana Runbrake
+  * X = +0.7500: Popo Teeter Break/Nana Teeter
+  * Y = +0.5625: Popo Jump out of Dash
+  * |X| <= 0.5875, Y = -0.5500: Grounded Nana Neutral-B, Popo Up/Down-B
+  * X = +0.5250, Y = +0.6250: two different aerials
+  * X = -0.4375, Y = +0.5250: two different aerials
+  * X = ±0.7000, Y = ±0.7125: stronger-than-analog-stick-accessible diagonal DI
+  * X = ±0.7125, Y = ±0.7000: stronger-than-analog-stick-accessible diagonal DI
+  * X = ±0.6875, Y = ±0.7250: stronger-than-analog-stick-accessible diagonal DI
+  * X = ±0.7250, Y = ±0.6875: stronger-than-analog-stick-accessible diagonal DI
+  * X = ±0.6750, Y = ±0.7375: stronger-than-analog-stick-accessible diagonal DI
+  * X = ±0.7375, Y = ±0.6750: stronger-than-analog-stick-accessible diagonal DI
+4. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
   * atan(|Y/X|) <= 50° (forward tilt instead of uptilt/downtilt)
   * |Y| >= 0.6625 (produce a tap jump)
   * |X| < 0.2875 (within the X deadzone)
-6. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
+5. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
   * X = ±0.5000, Y = 0
   * X = 0,       Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
   * X = ±0.3000, Y = ±0.4000
 
-### Control Stick
+#### Digital Input, C-Stick Output
 
-…it should be permissible to greatly stretch the output of input regions that originally existed fully in the melee deadzone, to handle worn firefox notches.
-This would ordinarily result in a zone that is easier to skip, but we can restrict it to be purely circumferential remapping.
+The following C-Stick coordinates must not be accessible using Digital Inputs:
 
-### C-Stick
-
-no stretching of 
+1. Ice Climbers Desyncs:
+  * X = ±0.8000: Popo Smash
+  * Y = ±0.6625: Popo Smash
+  * X = ±0.7000: Popo Roll EXCEPT FOR Y = ±0.7000
+  * X = -0.7000: Popo Spotdodge EXCEPT FOR X = ±0.7000 
+  * Y = +0.6625: Popo Jump out of Shield
+  * X = +0.5250, Y = +0.6250: two different aerials
+  * X = -0.4375, Y = +0.5250: two different aerials
+  * X = ±0.7000, Y = ±0.7125: stronger-than-analog-stick-accessible diagonal ASDI
+  * X = ±0.7125, Y = ±0.7000: stronger-than-analog-stick-accessible diagonal ASDI
+  * X = ±0.6875, Y = ±0.7250: stronger-than-analog-stick-accessible diagonal ASDI
+  * X = ±0.7250, Y = ±0.6875: stronger-than-analog-stick-accessible diagonal ASDI
+  * X = ±0.6750, Y = ±0.7375: stronger-than-analog-stick-accessible diagonal ASDI
+  * X = ±0.7375, Y = ±0.6750: stronger-than-analog-stick-accessible diagonal ASDI
 
 ## Analog Trigger Outputs
 
@@ -204,72 +282,3 @@ The Analog Trigger Output value when influenced by Digital Inputs must not be fr
 If a Digital Input used to influence an Analog Trigger Output is part of a Combined Analog Digital Input, the Analog Input part of the CADI must not influence any Outputs.
 
 
----
-
-this part is old
-
-# Digital Input, Digital Output
-
-Each Digital Input may not influence more than one Digital Output.
-
-If a Digital Output is influenced by one Digital Input, no other Inputs may control it.
-
-# Digital Input, Analog Output
-
-Digital to Analog conversion, henceforth known as DTA, is when an analog output value is influenced by one or more digital inputs.
-
-This includes but is not limited to: 
-
-* All-digital input controllers using nothing but buttons
-* GCC triggers modified so that digital press of the trigger is mapped to a fixed analog value
-* GCC C-stick digital button-based submodules
-
-## Analog Stick
-
-## C-Stick
-
-## Triggers
-
-# Analog Input, Analog Output
-
-Each Analog Input must not influence more than one Analog Output.
-
-## Stick Outputs
-
-### Full-Range Dual-Axis
-
-Any Analog Input with two orthogonal axes of sensitivity for a single control with its default output not at either end of its range is henceforth referred to as a Full-Range Dual-Axis Analog Input.
-
-(we want to permit stick coordinate remapping, so there needs to be some cross-axis correction but only when the two input axes are on the same Input and the two output axes are on the same control stick)
-
-Example: the control stick and C-stick on a GCC, laptop pointing sticks
-
-### Full-Range Single-Axis
-
-### Half-Range Single-Axis
-
-An Analog Input with its default output at one end of its range is henceforth referred to as a Half-Range Analog Input.
-
-Two Half-Range Analog Inputs may be combined, by taking the difference of their outputs, to influence exactly one Stick Output.
-
-If a Stick Output is influenced by two Half-Range Analog Inputs, no other Inputs
-
-Example: a box controller with analog buttons, a Theremin
-
-### Multitouch
-
-Multitouch panels are not permitted for controlling 
-
-Example: Steam Controller
-
-## Analog Triggers
-
-# Analog Input, Digital Output
-
-An Analog Input may only be used to produce a Digital Output when the Analog Input device has one threshold (hysteresis is permitted) to control one Digital Output.
-
-Each Digital Output may not be controlled by more than one Input.
-
-The Digital Input of a Combined Analog Digital Input must not control any output if its corresponding Analog Input is being used to control a Digital Output.
-
-(this is to prevent a wavedash trigger that jumps on an analog threshold and then digital shields on hard press)
