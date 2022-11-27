@@ -179,7 +179,7 @@ Permitted filters include but are not limited to:
 6. "energy-state tracking low-pass filter" (**may need more rule tweaking once we know more about how it's implemented**)
 
 Prohibited filters include but are not limited to:
-1. Timer-based PODE emulation
+1. Timer-based pode emulation
 2. Timer-based dashback out of crouch enhancement
 3. Timer-based empty pivot enhancement
 4. Angle- and timer-based ledgedash enhancement
