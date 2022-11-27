@@ -50,9 +50,9 @@ The TO is not required to abide by this request.
 If TOs are unable to determine that a controller is in full compliance, that controller may be banned at the TOs' sole discretion. 
 If a game or match cannot be played out in full due to a controller malfunction which cannot be fixed in a timely manner, and the player using the controller does not have a replacement controller readily available, the player may be disqualified at the sole discretion of TOs.
 
-All filter software source code shall be provided to the ruleset team in a non-obfuscated manner for compliance analysis.
+**All filter software source code shall be provided to the ruleset team in a non-obfuscated manner for compliance analysis.**
 OR
-All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.
+**All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.**
 
 ## Communications
 
@@ -188,13 +188,13 @@ Filters may be linearly chained so that the output of one is used as the input t
 
 ### Digital Input, Analog Stick Outputs
 
-TODO: DEAL WITH THIS
+**TODO: DEAL WITH THIS**
 
-* SOCD: does neutral SOCD eliminate the need for travel time emulation, because it makes perfect travel time skill-based?
-* How do we legislate travel time emulation? It's gotta run on everything. It needs to achieve parity => we need measurements
-* CC uptilt needs timing lockout of some sort?
-* SDI lockouts?
-* socd overriding modifier is busted (for ledgedash AND sdi)
+* **SOCD: does neutral SOCD eliminate the need for travel time emulation, because it makes perfect travel time skill-based?**
+* **How do we legislate travel time emulation? It's gotta run on everything. It needs to achieve parity => we need measurements**
+* **CC uptilt needs timing lockout of some sort?**
+* **SDI lockouts?**
+* **socd overriding modifier is busted (for ledgedash AND sdi)**
 
 When simultaneous opposing cardinal Digital Inputs are pressed, the output must be resolved according to one of the following options:
 
