@@ -57,7 +57,6 @@ OR
 ## Communications
 
 All communication between the controller and console must be either via wires or a wireless protocol that prevents interference.
-If a wireless protocol is used, the controller must ensure that only a 1:1 mapping between the controller and receiver is possible. For example, it must not be possible to connect two controllers to one receiver or one controller to two receivers. This mapping must be visually distinguishable, such as through matching colors on an LED on both the controller and receiver. 
 
 ## Input Layout
 
