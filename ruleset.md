@@ -50,6 +50,10 @@ The TO is not required to abide by this request.
 If TOs are unable to determine that a controller is in full compliance, that controller may be banned at the TOs' sole discretion. 
 If a game or match cannot be played out in full due to a controller malfunction which cannot be fixed in a timely manner, and the player using the controller does not have a replacement controller readily available, the player may be disqualified at the sole discretion of TOs.
 
+All filter software source code shall be provided to the ruleset team in a non-obfuscated manner for compliance analysis.
+OR
+All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.
+
 ## Communications
 
 All communication between the controller and console must be either via wires or a wireless protocol that prevents interference.
@@ -86,13 +90,13 @@ Each Digital Output must not have any delayed response to any change in the stat
 
 ## Digital Input, Digital Output
 
-Modifiers may only influence Digital Outputs on triggers in the case that the modifier disables the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger.
+Modifier Inputs may only influence Digital Outputs on triggers in the case that the Modifier Input disables the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger.
 
 ## Analog Input, Digital Output
 
 The only type of Analog Input permitted to influence a Digital Output is a Digitized Half-Range Analog Input (DHRAI) such as the slider in GCC triggers, position-sensing analog keyboard switches, or force-sensitive buttons.
 
-If a DHRAI is used as a Modifier for an Analog Output as well as the primary influence on a Digital Output, the DHRAI thresholds must be the same for both.
+If a DHRAI is used as a Modifier Input for an Analog Output as well as the primary influence on a Digital Output, the DHRAI thresholds must be the same for both.
 
 If a Half-Range Analog Input used to influence a Digital Output is part of a Combined Analog Digital Input, the Digital Input part of the CADI must not influence any Outputs.
 
@@ -105,7 +109,7 @@ Each Analog Stick Output may be influenced only by one of the following choices:
 1. One Two-Axis Analog Input
 2. Two Full-Range Analog Inputs, one for each Analog Stick Output axis.
 3. Four Half-Range Analog Inputs, with two influencing each direction.
-4. Four Digital Inputs or DHRAI, optionally with additional Modifiers.
+4. Four Digital Inputs or DHRAI, optionally with additional Modifier Inputs.
 
 Pairs of Half-Range Analog Inputs (HRAI), each used to influence one Analog Stick Output axis, must use average SOCD with one HRAI mapped to the range from (<=-1 to 0) and one ranging from (0 to >=1).
 
@@ -117,7 +121,7 @@ Any Full-Rage Analog Inputs used to influence the Analog Stick Outputs must have
 
 Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 128 digital readout levels over the Input range.
 
-If and only if the relation between the motion of an Analog Input's Actuator and the value it measures is nonlinear, the value must be linearized before being presented to the console as an Analog Output.
+If and only if the relation between the motion of an Analog Input's Actuator and the value it measures is nonlinear, the value must be linearized before being presented to the console as an Analog Stick Output.
 This linearization must be a static mapping.
 For example, a stick with its position read by a Hall Effect sensor must have linearization performed, while a linear potentiometer must *not* have linearization performed.
 
@@ -143,7 +147,9 @@ This exception is to allow third-party controllers to make 1.0 magnitude cardina
 EXCEPTION: Linearized Input coordinates with |X| <= 5 and |Y| <= 5 may be mapped to the origin.
 This exception allows controllers to make the origin initialization more consistent.
 
-Digital Input Filtering: All digital filtering, or processing, of Analog Inputs for a given Analog Stick must completely ignore all other Inputs on the controller.
+Digital Input Filtering:
+The Analog Stick Output may be digitally filtered, or processed, to change its response.
+All digital filtering of Analog Inputs for a given Analog Stick must completely ignore all other Inputs on the controller.
 If the filter output does not correspond directly to the filter input, the output shall be either stationary, moving towards, or accelerating towards the input to the filter.
 
 Filters must be composed of weighted sums of the following values:
@@ -154,7 +160,7 @@ Filters must be composed of weighted sums of the following values:
 * one-iteration previous filtered output in the axis being processed.
 
 The weights of these terms may be either constant or non-constant.
-Non-constant weights may vary according to axisymmetric and otherwise monotonic functions of:
+Non-constant weights may vary according to axisymmetric and otherwise monotonically changing functions of:
 
 * current input position in the axis being processed
 * current input velocity in the axis being processed
@@ -181,6 +187,23 @@ Illegal filters include but are not limited to:
 Filters may be linearly chained so that the output of one is used as the input to the next.
 
 ### Digital Input, Analog Stick Outputs
+
+TODO: DEAL WITH THIS
+
+* SOCD: does neutral SOCD eliminate the need for travel time emulation, because it makes perfect travel time skill-based?
+* How do we legislate travel time emulation? It's gotta run on everything. It needs to achieve parity => we need measurements
+* CC uptilt needs timing lockout of some sort?
+* SDI lockouts?
+* socd overriding modifier is busted (for ledgedash AND sdi)
+
+When simultaneous opposing cardinal Digital Inputs are pressed, the output must be resolved according to one of the following options:
+
+1. Neutral: when opposing cardinals are pressed, the output must be 0.
+2. Second-Input Priority, No Reactivation (2IP No Reactivation): when one cardinal is already pressed and its opposing cardinal is also pressed, the output follows the second cardinal. However, if the second cardinal is released, the output must be 0 instead of *reactivating* the first cardinal.
+
+Modifier Inputs used to influence the output coordinate of an Analog Stick may not change the Zone (neutral, cardinal in the deadzone, or diagonal quadrant) of the coordinate.
+
+B, when used as a Modifier Input, must only increase the radius of the Analog Stick Output.
 
 The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick
 
@@ -261,15 +284,43 @@ The Analog Trigger outputs may be influenced only by Half-Range Analog Inputs.
 
 The default Output must be 0.
 
-Any Analog Inputs used to influence the Analog Trigger Outputs must have a resolution of at least 64 digital readout levels over the Input range.
+Any Analog Inputs used to influence the Analog Trigger Outputs must have a resolution of at least 64 digital readout levels over the full Input motion range.
 
 The Analog Input controlling an Analog Trigger Output may be the analog part of a CADI or Emulated CADI but if the digital part of the CADI is used it must Influence only the same trigger's Digital Output.
 
-yoshi mode okay? limit to 49 (z-lightshield)
+If and only if the relation between the motion of an Analog Input's Actuator and the value it measures is nonlinear, the value must be linearized before being presented to the console as an Analog Trigger Output.
+This linearization must be a static mapping.
 
-The relation between the Analog Trigger Input and the Analog Trigger Output must be linear from 0 to 49.
+Nonlinearization of this is permitted with the following restrictions:
 
-The mapping between the value read by the Input and the Analog Trigger Output must be a static relation.
+The mapping between the linearized Analog Trigger Input and the Analog Trigger Output must be linear with an intercept of 0 from 43 to 49.
+
+The mapping between the linearized Analog Trigger Input and the Analog Trigger Output must be monotonically non-decreasing.
+
+Any nonlinear relation between the linearized Analog Trigger Input and the Analog Trigger Output must be a static mapping.
+
+Digital Input Filtering:
+The Analog Trigger Output may be digitally filtered, or processed, to change its response.
+All digital filtering of Analog Inputs for a given Analog Trigger must completely ignore all other Inputs on the controller.
+If the filter output does not correspond directly to the filter input, the output shall be either stationary, moving towards, or accelerating towards the input to the filter.
+
+Filters must be composed of weighted sums of the following values:
+
+* current and one-iteration previous input position
+* current and one-iteration previous input velocity
+* current and one-iteration previous intermediate filter values
+* one-iteration previous filtered output
+
+The weights of these terms may be either constant or non-constant.
+Non-constant weights may vary according monotonically changing functions of:
+
+* current input position
+* current input velocity
+* current input acceleration
+* current difference between input position and previous output position
+
+A simple windowed median filter is also permitted, despite not meeting the above requirements.
+
 
 ### Digital Input, Analog Trigger Output
 
@@ -280,5 +331,4 @@ The Analog Trigger Output value must default to 0.
 The Analog Trigger Output value when influenced by Digital Inputs must not be from 43 to 48 inclusive.
 
 If a Digital Input used to influence an Analog Trigger Output is part of a Combined Analog Digital Input, the Analog Input part of the CADI must not influence any Outputs.
-
 
