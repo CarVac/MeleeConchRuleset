@@ -176,7 +176,7 @@ Permitted filters include but are not limited to:
 3. PhobGCC Smart Snapback Filter
 4. PhobGCC Waveshaping
 5. Simple low-pass filtering
-6. "energy-state tracking low-pass filter" (may need more rule tweaking once we know more about how it's implemented)
+6. "energy-state tracking low-pass filter" (**may need more rule tweaking once we know more about how it's implemented**)
 
 Illegal filters include but are not limited to:
 1. Timer-based pode emulation
