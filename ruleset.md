@@ -54,6 +54,8 @@ If a game or match cannot be played out in full due to a controller malfunction 
 OR
 **All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.**
 
+**Players utilizing a reprogrammable controller must declare the firmware they are using.**
+
 ## Communications
 
 All communication between the controller and console must be either via wires or a wireless protocol that prevents interference.
@@ -193,6 +195,7 @@ Filters may be linearly chained so that the output of one is used as the input t
 * **SOCD: does neutral SOCD eliminate the need for travel time emulation, because it makes perfect travel time skill-based?**
 * **How do we legislate travel time emulation? It's gotta run on everything. It needs to achieve parity => we need measurements**
 * **CC uptilt needs timing lockout of some sort?**
+* **Pivot uptilt?**
 * **SDI lockouts?**
 * **socd overriding modifier is busted (for ledgedash AND sdi)**
 
@@ -205,7 +208,7 @@ Modifier Inputs used to influence the output coordinate of an Analog Stick may n
 
 B, when used as a Modifier Input, must only increase the radius of the Analog Stick Output.
 
-The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick
+The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick:
 
 1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. These are on the quadrant boundaries and enable the steepest/shallowest angles, "mid-angle" tilts and smashes, tap jump short hop with the stick outside of the deadzone, and double-jumping backwards with Yoshi/Jigglypuff/Kirby without turning around.
 
