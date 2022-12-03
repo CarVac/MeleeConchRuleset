@@ -47,12 +47,14 @@ Influence: to be one of the Inputs used by the controller to determine the state
 TOs may inspect any controller at any time.
 If a player suspects their opponent's controller is not abiding by these rules, they may request a controller inspection by TOs.
 The TO is not required to abide by this request.
-If TOs are unable to determine that a controller is in full compliance, that controller may be banned at the TOs' sole discretion. 
+If TOs are unable to determine that a controller is in full compliance, that controller may be banned at the TOs' sole discretion.
 If a game or match cannot be played out in full due to a controller malfunction which cannot be fixed in a timely manner, and the player using the controller does not have a replacement controller readily available, the player may be disqualified at the sole discretion of TOs.
 
 **All filter software source code shall be provided to the ruleset team in a non-obfuscated manner for compliance analysis.**
 OR
 **All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.**
+
+**Players utilizing a reprogrammable controller must declare the firmware they are using.**
 
 ## Communications
 
@@ -137,7 +139,7 @@ Coordinate Snapping/Accessibility Restriction: The region of linearized Input co
 This restriction exists to prevent coordinate remapping that makes it easy to pinpoint specific values or that prevents you from ever outputting certain coordinates.
 
 EXCEPTION: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
-This exception does not allow a violation of radial remapping distance restrions.
+This exception does not allow a violation of radial remapping distance restrictions.
 This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.
 This is not intended to allow, for example, an across-the-board remapping of deadzone values near Y = +0.2875 to be mapped to Y = +0.2875 to make uptilts easier.
 
@@ -193,6 +195,7 @@ Filters may be linearly chained so that the output of one is used as the input t
 * **SOCD: does neutral SOCD eliminate the need for travel time emulation, because it makes perfect travel time skill-based?**
 * **How do we legislate travel time emulation? It's gotta run on everything. It needs to achieve parity => we need measurements**
 * **CC uptilt needs timing lockout of some sort?**
+* **Pivot uptilt?**
 * **SDI lockouts?**
 * **socd overriding modifier is busted (for ledgedash AND sdi)**
 
@@ -205,7 +208,7 @@ Modifier Inputs used to influence the output coordinate of an Analog Stick may n
 
 B, when used as a Modifier Input, must only increase the radius of the Analog Stick Output.
 
-The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick
+The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick:
 
 1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. These are on the quadrant boundaries and enable the steepest/shallowest angles, "mid-angle" tilts and smashes, tap jump short hop with the stick outside of the deadzone, and double-jumping backwards with Yoshi/Jigglypuff/Kirby without turning around.
 
@@ -253,7 +256,7 @@ The following C-Stick coordinates must not be accessible using Digital Inputs:
   * X = ±0.8000: Popo Smash
   * Y = ±0.6625: Popo Smash
   * X = ±0.7000: Popo Roll EXCEPT FOR Y = ±0.7000
-  * X = -0.7000: Popo Spotdodge EXCEPT FOR X = ±0.7000 
+  * X = -0.7000: Popo Spotdodge EXCEPT FOR X = ±0.7000
   * Y = +0.6625: Popo Jump out of Shield
   * X = +0.5250, Y = +0.6250: two different aerials
   * X = -0.4375, Y = +0.5250: two different aerials
@@ -331,4 +334,3 @@ The Analog Trigger Output value must default to 0.
 The Analog Trigger Output value when influenced by Digital Inputs must not be from 43 to 48 inclusive.
 
 If a Digital Input used to influence an Analog Trigger Output is part of a Combined Analog Digital Input, the Analog Input part of the CADI must not influence any Outputs.
-
