@@ -83,8 +83,7 @@ If any Input influences A, X, Y, Z, D-pad directions, or Start Outputs, then it 
 If any Input influences B, L Digital, or R Digital Outputs, it may only influence other outputs as a Modifier Input.
 
 Each Digital Output may be influenced by no more than one Input of any type.
-The first exception is that Z may be influenced by up to two Inputs.
-The other exception to this is that L Digital and R Digital Outputs may have the Digital Outputs disabled by a Dedicated Modifier Input that modifies the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger.
+The only exception to this is that L Digital and R Digital Outputs may have the Digital Outputs disabled by a Dedicated Modifier Input that modifies the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger.
 
 Digital Outputs must be off in their default states regardless of what type of Input influences each one.
 
