@@ -50,15 +50,15 @@ The TO is not required to abide by this request.
 If TOs are unable to determine that a controller is in full compliance, that controller may be banned at the TOs' sole discretion.
 If a game or match cannot be played out in full due to a controller malfunction which cannot be fixed in a timely manner, and the player using the controller does not have a replacement controller readily available, the player may be disqualified at the sole discretion of TOs.
 
-**All filter software source code shall be provided to the ruleset team in a non-obfuscated manner for compliance analysis.**
-OR
-**All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.**
+All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.
 
-**Players utilizing a reprogrammable controller must declare the firmware they are using.**
+If requested by a TO or an opponent, players utilizing a reprogrammable controller must declare the firmware they are using.
 
 ## Communications
 
 All communication between the controller and console must be either via wires or a wireless protocol that prevents interference.
+
+It must not be possible to simultaneously connect two controllers to one wireless receiver, or one controller to two wireless receivers.
 
 ## Input Layout
 
