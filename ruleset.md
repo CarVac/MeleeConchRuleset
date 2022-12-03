@@ -18,19 +18,19 @@ Digital Trigger Output: L or R Digital Outputs
 
 Analog Input: Any Input device that measures a smoothly-changing value roughly proportional to a physical position or applied force
 
-Half-Range Analog Input (HRAI): any Analog Input device with a default output at the extreme end of its range
+Half-Range Analog Input (HRAI): any Analog Input device with a default output at one end of its range (ex. XBox controller trigger)
 
 Digitized Half-Range Analog Input (DHRAI): an intermediate digital value activated when a HRAI's value exceeds a constant rising-edge threshold and deactivated when it drops below a constant falling-edge threshold
 
-Full-Range Analog Input: any Analog Input device with a default output not at either end of its range
+Full-Range Analog Input: any Analog Input device with a default output at the center of its range
 
-Nonreturning Analog Input: any Analog Input device that does not automatically return to a default output (ex. physical volume slider)
+Nonreturning Analog Input: any Analog Input device that does not automatically return to a default output when the Actuator is released (ex. physical volume slider)
 
 Two-Axis Analog Input: any Analog Input device which consists of two independently-controllable Full-Range Analog Inputs that share an Actuator (ex. analog stick)
 
 Digital Input: Any Input device that produces exactly two possible values according to a physical position or applied force (ex. button)
 
-Combined Analog Digital Input (CADI): An Analog Input device which over the course of its travel activates an electrically distinct Digital Input (ex. GCC triggers)
+Combined Analog Digital Input (CADI): A Half-Range Analog Input device which over the course of its travel activates an electrically distinct Digital Input (ex. GCC trigger)
 
 Emulated Combined Analog Digital Input (Emulated CADI): A HRAI acting simultaneously as a HRAI and a DHRAI so as to emulate the behavior of a CADI
 
@@ -38,7 +38,7 @@ Modifier Input: Any Digital Input or Digitized HRAI that, when actuated in combi
 
 Dedicated Modifier Input: Any Modifier Input that influences no Outputs when actuated alone or in concert with other Dedicated Modifiers
 
-Influence: to be one of the inputs used by the controller to determine the state of an Output
+Influence: to be one of the Inputs used by the controller to determine the state of an Output
 
 # General
 
