@@ -62,7 +62,7 @@ It must not be possible to simultaneously connect two controllers to one wireles
 
 ## Input Layout
 
-Generally, any layout of Inputs is permitted.
+Generally, any placement of Inputs on the controller is permitted.
 
 Aside from Combined Analog Digital Inputs (CADI), Emulated CADI, and orthogonal axes of a control stick Analog Input, Inputs must not share Actuators in a way that makes it difficult or impossible to actuate one without actuating another.
 
