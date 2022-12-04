@@ -93,7 +93,7 @@ Each Digital Output must not have any delayed response to any change in the stat
 
 The only type of Analog Input permitted to influence a Digital Output is a Digitized Half-Range Analog Input (DHRAI) such as the slider in GCC triggers, position-sensing analog keyboard switches, or force-sensitive buttons.
 
-If a DHRAI is used as a Modifier Input for an Analog Output as well as the primary influence on a Digital Output, the DHRAI thresholds must be the same for both.
+If a DHRAI is used as a Modifier Input for an Analog Output as well as the primary influence on a Digital Output, the DHRAI thresholds must be the same for both. (Any digital interpretation of a DHRAI must act identically to a pure Digital Input.)
 
 If a Half-Range Analog Input used to influence a Digital Output is part of a Combined Analog Digital Input, the Digital Input part of the CADI must not influence any Outputs.
 
