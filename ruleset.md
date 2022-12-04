@@ -122,7 +122,7 @@ If and only if the relation between the motion of an Analog Input's Actuator and
 This linearization must be a static mapping.
 For example, a stick with its position read by a Hall Effect sensor must have linearization performed, while a linear potentiometer must *not* have linearization performed.
 
-As an exception to the linearization rule, OEM first-party or second-party controllers that have developed nonlinearity in potentiometers are not required to have their output linearized (due to the inability to do so).
+As an exception to the linearization rule, OEM first-party or second-party controllers with linear potentiometers that have developed nonlinearity in potentiometers are not required to have their output linearized (due to the inability to do so).
 
 ### Analog Input, Analog Stick Outputs
 
