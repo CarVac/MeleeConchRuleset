@@ -196,7 +196,7 @@ Filters may be linearly chained so that the output of one is used as the input t
 * **SOCD: does neutral SOCD eliminate the need for travel time emulation, because it makes perfect travel time skill-based?**
 * **How do we legislate travel time emulation? It's gotta run on everything. It needs to achieve parity => we need measurements**
 * **CC uptilt needs timing lockout of some sort?**
-* **Pivot uptilt?**
+* **Pivot uptilt 15 frame?**
 * **SDI lockouts?**
 * **socd overriding modifier is busted (for ledgedash AND sdi)**
 
@@ -218,11 +218,13 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 The following Control Stick coordinates must not be accessible using Digital Inputs:
 
 1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be accessible while |X| < 0.7000.
-2. Directional Airdodge Angles: While either Digital L or Digital R outputs are active, all output coordinates must meet one of the following three criteria:
-  * 22.96° < atan(|Y/X|) < 67.04° (within the permissible angle range) (NOTE: This was 23-67 in the SWT ruleset, but b0xx firefox angles are 22.96377... degrees; b0xx uses 30.46554... degree wavedash angles)
+2. Firefox Angles: All output coordinates must meet one of the following three criteria:
+  * 22.96° < atan(|Y/X|) < 67.04°
   * |X| < 0.2875 (within the X deadzone)
   * |Y| < 0.2875 (within the Y deadzone)
-3. Ice Climbers Desyncs:
+3. Directional Airdodge Angles: While either Digital L or Digital R outputs are active, all output coordinates must additionally meet the following criterion:
+  * 30.46° < atan(|Y/X|) < 59.54°
+4. Ice Climbers Desyncs:
   * X = ±0.8000: Popo Smash/Nana Tilt
   * Y = ±0.6625: Popo Smash/Nana Tilt
   * X = ±0.7000: Popo Roll EXCEPT FOR Y = ±0.7000
@@ -239,11 +241,11 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * X = ±0.7250, Y = ±0.6875: stronger-than-analog-stick-accessible diagonal DI
   * X = ±0.6750, Y = ±0.7375: stronger-than-analog-stick-accessible diagonal DI
   * X = ±0.7375, Y = ±0.6750: stronger-than-analog-stick-accessible diagonal DI
-4. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
+5. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
   * atan(|Y/X|) <= 50° (forward tilt instead of uptilt/downtilt)
   * |Y| >= 0.6625 (produce a tap jump)
   * |X| < 0.2875 (within the X deadzone)
-5. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
+6. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
   * X = ±0.5000, Y = 0
   * X = 0,       Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
