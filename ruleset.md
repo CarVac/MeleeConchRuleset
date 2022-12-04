@@ -265,12 +265,12 @@ The following C-Stick coordinates must not be accessible using Digital Inputs:
   * X = +0.5250, Y = +0.6250: two different aerials
   * X = -0.4375, Y = +0.5250: two different aerials
 2. Stronger diagonal ASDI than is accessible on the analog stick rim:
-  * X = ±0.7000, Y = ±0.7125: stronger-than-analog-stick-accessible diagonal ASDI
-  * X = ±0.7125, Y = ±0.7000: stronger-than-analog-stick-accessible diagonal ASDI
-  * X = ±0.6875, Y = ±0.7250: stronger-than-analog-stick-accessible diagonal ASDI
-  * X = ±0.7250, Y = ±0.6875: stronger-than-analog-stick-accessible diagonal ASDI
-  * X = ±0.6750, Y = ±0.7375: stronger-than-analog-stick-accessible diagonal ASDI
-  * X = ±0.7375, Y = ±0.6750: stronger-than-analog-stick-accessible diagonal ASDI
+  * X = ±0.7000, Y = ±0.7125
+  * X = ±0.7125, Y = ±0.7000
+  * X = ±0.6875, Y = ±0.7250
+  * X = ±0.7250, Y = ±0.6875
+  * X = ±0.6750, Y = ±0.7375
+  * X = ±0.7375, Y = ±0.6750
 
 ## Analog Trigger Outputs
 
