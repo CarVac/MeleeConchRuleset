@@ -179,6 +179,7 @@ The following techniques are explicitly prohibited:
 1. Timers
 2. Cross-axis interactions aside from radius measurements used as weights
 3. Non symmetric thresholds or weights
+4. Weights that both increase and decrease between center and rim
 
 Prohibited filters include but are not limited to:
 1. Timer-based pode emulation
