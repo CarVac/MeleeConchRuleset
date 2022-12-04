@@ -235,7 +235,7 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * |X| <= 0.5875, Y = -0.5500: Grounded Nana Neutral-B, Popo Up/Down-B
   * X = +0.5250, Y = +0.6250: two different aerials
   * X = -0.4375, Y = +0.5250: two different aerials
-5. Stronger diagonal DI than is inaccessible on the analog stick rim:
+5. Stronger diagonal DI than is accessible on the analog stick rim:
   * X = ±0.7000, Y = ±0.7125
   * X = ±0.7125, Y = ±0.7000
   * X = ±0.6875, Y = ±0.7250
@@ -264,7 +264,7 @@ The following C-Stick coordinates must not be accessible using Digital Inputs:
   * Y = +0.6625: Popo Jump out of Shield
   * X = +0.5250, Y = +0.6250: two different aerials
   * X = -0.4375, Y = +0.5250: two different aerials
-2. Stronger diagonal ASDI than is inaccessible on the analog stick rim:
+2. Stronger diagonal ASDI than is accessible on the analog stick rim:
   * X = ±0.7000, Y = ±0.7125: stronger-than-analog-stick-accessible diagonal ASDI
   * X = ±0.7125, Y = ±0.7000: stronger-than-analog-stick-accessible diagonal ASDI
   * X = ±0.6875, Y = ±0.7250: stronger-than-analog-stick-accessible diagonal ASDI
