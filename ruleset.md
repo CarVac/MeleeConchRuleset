@@ -58,7 +58,7 @@ If requested by a TO or an opponent, players utilizing a reprogrammable controll
 
 All communication between the controller and console must be either via wires or a wireless protocol that prevents interference.
 
-It must not be possible to simultaneously connect two controllers to one wireless receiver, or one controller to two wireless receivers.
+It must not be possible to simultaneously connect two controllers to one wireless receiver, or one controller to two wireless receivers. (The Wavebird is not permitted.)
 
 ## Input Layout
 
@@ -82,16 +82,12 @@ If any Input influences A, X, Y, Z, D-pad directions, or Start Outputs, then it 
 
 If any Input influences B, L Digital, or R Digital Outputs, it may only influence other outputs as a Modifier Input.
 
-Each Digital Output may be influenced by no more than one Input of any type.
-The only exception to this is that L Digital and R Digital Outputs may have the Digital Outputs disabled by a Dedicated Modifier Input that modifies the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger.
+Each Digital Output may be influenced by no more than one Input of any type. (The Hori GCC is not permitted unless one Z button is disabled.)
+The only exception to this is that L Digital and R Digital Outputs may have the Digital Outputs disabled by a Dedicated Modifier Input that modifies the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger. (This allows for R1 B0XX lightshield.)
 
 Digital Outputs must be off in their default states regardless of what type of Input influences each one.
 
-Each Digital Output must not have any delayed response to any change in the state of any Input that influences it.
-
-## Digital Input, Digital Output
-
-Modifier Inputs may only influence Digital Outputs on triggers in the case that the Modifier Input disables the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger.
+Each Digital Output must not have any delayed response to any change in the state of any Input that influences it. (This rule prohibits macros.)
 
 ## Analog Input, Digital Output
 
