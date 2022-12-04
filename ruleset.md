@@ -114,7 +114,7 @@ Analog Inputs may not be used together with Digital Inputs for any given Analog 
 
 ### Analog Input Precision and Linearization
 
-Any Full-Rage Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 256 digital readout levels over the Input range.
+Any Full-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 256 digital readout levels over the Input range.
 
 Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 128 digital readout levels over the Input range.
 
