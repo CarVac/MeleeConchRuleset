@@ -193,15 +193,6 @@ Filters may be linearly chained so that the output of one is used as the input t
 
 ### Digital Input, Analog Stick Outputs
 
-**TODO: DEAL WITH THIS**
-
-* **SOCD: does neutral SOCD eliminate the need for travel time emulation, because it makes perfect travel time skill-based?**
-* **How do we legislate travel time emulation? It's gotta run on everything. It needs to achieve parity => we need measurements**
-* **CC uptilt needs timing lockout of some sort?**
-* **Pivot uptilt 15 frame?**
-* **SDI lockouts?**
-* **socd overriding modifier is busted (for ledgedash AND sdi)**
-
 When simultaneous opposing cardinal Digital Inputs are pressed, the output must be resolved according to one of the following options:
 
 1. Neutral: when opposing cardinals are pressed, the output must be 0.
@@ -216,6 +207,16 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. These are on the quadrant boundaries and enable the steepest/shallowest angles, "mid-angle" tilts and smashes, tap jump short hop with the stick outside of the deadzone, and double-jumping backwards with Yoshi/Jigglypuff/Kirby without turning around.
 
 #### Digital Input, Control Stick Output
+
+Due to the ease of access to precise tilt values, the A button must be ignored (lockout for how many frames if pressed in it?) after an empty pivot (how do you define this?) when in the following zones:
+  * |X| < 0.8000, 0.2875 <= Y < 0.6625: 9 frames
+  * |X| < 0.8000, -0.6625 < Y <= -0.2875: 4 frames
+
+TODO: define existing box nerfs
+Pivot uptilt: 9 frames
+Pivot downtilt: 4 frames
+cardinal-diag-diag: 4 frames
+
 
 The following Control Stick coordinates must not be accessible using Digital Inputs:
 
@@ -253,6 +254,20 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * X = 0,       Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
   * X = ±0.3000, Y = ±0.4000
+
+Conditionally Inaccessible Coordinates:
+
+1. While B is pressed, the following coordinates must must not be accessible:
+  * 0.2875 <= |X| <= 0.5875, |Y| <= 0.5375: turnaround Neutral-B
+2. When a cardinal is followed by a diagonal on a later frame, the diagonal mirror opposite across the cardinal is banned (eaten input) for 4 frames.
+
+Conditionally Inaccessible Buttons:
+
+After performing an empty pivot, which is defined as crossing from one horizontal cardinal to the other, then dropping below |X| = 0.8000 within 2 frames, any A Input actuations beginning during certain lockout windows are to be prevented from Influencing the A Output if the stick is in the following coordinate ranges:
+
+TODO: coordinates and times
+
+If an A Input actuation that began in a forbidden stick condition is still active when the condition ends (when the stick moves out of those coordinate ranges or when the lockout window ends), the A Output must not be activated.
 
 #### Digital Input, C-Stick Output
 
