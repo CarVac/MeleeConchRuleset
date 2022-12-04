@@ -136,7 +136,7 @@ This restriction exists to prevent coordinate remapping that makes it easy to pi
 EXCEPTION: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
 This exception does not allow a violation of radial remapping distance restrictions.
 This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.
-This is not intended to allow, for example, an across-the-board remapping of deadzone values near Y = +0.2875 to be mapped to Y = +0.2875 to make uptilts easier.
+This is not intended to allow, for example, a remapping of deadzone values not at the rim to be mapped to Y = +0.2875 to make uptilts easier.
 
 EXCEPTION: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped to 0 even if that violates distance restrictions or if this results in inaccessible output coordinates.
 This exception is to allow third-party controllers to make 1.0 magnitude cardinals more accessible with analog sticks.
