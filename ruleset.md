@@ -235,17 +235,18 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * |X| <= 0.5875, Y = -0.5500: Grounded Nana Neutral-B, Popo Up/Down-B
   * X = +0.5250, Y = +0.6250: two different aerials
   * X = -0.4375, Y = +0.5250: two different aerials
-  * X = ±0.7000, Y = ±0.7125: stronger-than-analog-stick-accessible diagonal DI
-  * X = ±0.7125, Y = ±0.7000: stronger-than-analog-stick-accessible diagonal DI
-  * X = ±0.6875, Y = ±0.7250: stronger-than-analog-stick-accessible diagonal DI
-  * X = ±0.7250, Y = ±0.6875: stronger-than-analog-stick-accessible diagonal DI
-  * X = ±0.6750, Y = ±0.7375: stronger-than-analog-stick-accessible diagonal DI
-  * X = ±0.7375, Y = ±0.6750: stronger-than-analog-stick-accessible diagonal DI
-5. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
+5. Stronger diagonal DI than is inaccessible on the analog stick rim:
+  * X = ±0.7000, Y = ±0.7125
+  * X = ±0.7125, Y = ±0.7000
+  * X = ±0.6875, Y = ±0.7250
+  * X = ±0.7250, Y = ±0.6875
+  * X = ±0.6750, Y = ±0.7375
+  * X = ±0.7375, Y = ±0.6750
+6. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
   * atan(|Y/X|) <= 50° (forward tilt instead of uptilt/downtilt)
   * |Y| >= 0.6625 (produce a tap jump)
   * |X| < 0.2875 (within the X deadzone)
-6. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
+7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
   * X = ±0.5000, Y = 0
   * X = 0,       Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
@@ -263,6 +264,7 @@ The following C-Stick coordinates must not be accessible using Digital Inputs:
   * Y = +0.6625: Popo Jump out of Shield
   * X = +0.5250, Y = +0.6250: two different aerials
   * X = -0.4375, Y = +0.5250: two different aerials
+2. Stronger diagonal ASDI than is inaccessible on the analog stick rim:
   * X = ±0.7000, Y = ±0.7125: stronger-than-analog-stick-accessible diagonal ASDI
   * X = ±0.7125, Y = ±0.7000: stronger-than-analog-stick-accessible diagonal ASDI
   * X = ±0.6875, Y = ±0.7250: stronger-than-analog-stick-accessible diagonal ASDI
