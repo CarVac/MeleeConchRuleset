@@ -133,15 +133,15 @@ This restriction exists to prevent modifications of the coordinate grid that mak
 Coordinate Snapping/Accessibility Restriction: The region of linearized Input coordinates corresponding to a given Output coordinate must not have its bounding box dimensions differ from the dimensions of the output coordinate by more than 30%, whether stretched or compressed.
 This restriction exists to prevent coordinate remapping that makes it easy to pinpoint specific values or that prevents you from ever outputting certain coordinates.
 
-EXCEPTION: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
+Exception: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
 This exception does not allow a violation of radial remapping distance restrictions.
 This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.
 This is not intended to allow, for example, a remapping of deadzone values not at the rim to be mapped to Y = +0.2875 to make uptilts easier.
 
-EXCEPTION: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped to 0 even if that violates distance restrictions or if this results in inaccessible output coordinates.
+Exception: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped to 0 even if that violates distance restrictions or if this results in inaccessible output coordinates.
 This exception is to allow third-party controllers to make 1.0 magnitude cardinals more accessible with analog sticks.
 
-EXCEPTION: Linearized Input coordinates with |X| <= 5 and |Y| <= 5 may be mapped to the origin.
+Exception: Linearized Input coordinates with |X| <= 5 and |Y| <= 5 may be mapped to the origin.
 This exception allows controllers to make the origin initialization more consistent.
 
 Digital Input Filtering:
@@ -284,7 +284,9 @@ When Z is held, the resulting lightshield is equivalent to the lightshield from 
 
 ### Analog Trigger General Rules
 
-If either Analog Trigger Output is influenced by Digital Inputs, both Analog Trigger Outputs must be influenced solely by Digital Inputs, or by Digitized Half-Range Analog Inputs.
+If either the L or R Analog Trigger Output is influenced solely by either Digital Inputs or Digitized Half-Range Analog Inputs, both Analog Trigger Outputs must be influenced solely by either Digital Inputs or by Digitized Half-Range Analog Inputs.
+
+Exception: The Digital Trigger Output and Analog Trigger Output of the same trigger may be actuated simultaneously by the same Digital Input or Digitized Half-Range Analog Input.
 
 ### Analog Input, Analog Trigger Output
 
