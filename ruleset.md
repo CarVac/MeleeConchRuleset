@@ -177,7 +177,7 @@ Permitted filters include but are not limited to:
 
 The following techniques are explicitly prohibited:
 1. Timers
-2. Cross-axis interactions
+2. Cross-axis interactions aside from radius measurements used as weights
 3. Non symmetric thresholds or weights
 
 Prohibited filters include but are not limited to:
