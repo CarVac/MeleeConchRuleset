@@ -51,6 +51,7 @@ If TOs are unable to determine that a controller is in full compliance, that con
 If a game or match cannot be played out in full due to a controller malfunction which cannot be fixed in a timely manner, and the player using the controller does not have a replacement controller readily available, the player may be disqualified at the sole discretion of TOs.
 
 All controllers or components for controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification. (This means that anyone gets to see the code and check for compliance, but some makers are hesitant to share for *mysterious* reasons)
+
 ALTERNATE: All source code must be made available under NDA to a trusted set of developers who can verify behavior. (This appeases hardware manufacturers who want to hide source code due to whatever reasons, but puts a burden on a small group, particularly an NDA that subjects them to being sued without them benefiting in any way, and that group's work must be trusted and cannot be audited)
 
 If requested by a TO or an opponent, players utilizing a reprogrammable controller must declare the firmware they are using. (This can be used later when inspecting controller inputs from replays)
@@ -92,6 +93,8 @@ The only exception to this is that L Digital and R Digital Outputs may have the 
 Digital Outputs must be off in their default states regardless of what type of Input influences each one. (No buttons that must be pressed to turn off an input)
 
 Each Digital Output must not have any delayed response to any change in the state of any Input that influences it. (This rule prohibits macros.)
+
+EXCEPTION: lockouts related to Digital Input, Analog Output controls (rectangle nerfs)
 
 ## Analog Input, Digital Output
 
