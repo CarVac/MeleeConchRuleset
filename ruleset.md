@@ -69,7 +69,7 @@ Generally, any placement of Inputs on the controller is permitted. (Rectangles e
 Aside from Combined Analog Digital Inputs (CADI), Emulated CADI, and orthogonal axes of a control stick Analog Input, Inputs must not share Actuators in a way that makes it difficult or impossible to actuate one without actuating another. (no physical macros)
 
 Inputs must not have two separate Actuators that both influence the value read by that Input. (no physical duplication of a single electrical button)
-Each Actuator must consist of exactly one rigid body. (no ASDI-down c-stick string)
+Each Actuator must consist of exactly one rigid body, with no surface deflecting by more than 5mm under 100 gram force. (no ASDI-down c-stick string)
 
 ## Configuration
 
