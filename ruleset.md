@@ -2,7 +2,7 @@
 
 Input: A device that measures or detects movements/force from a user's body used to influence the Output
 
-Actuator: A part of an Input that a user interacts with in order to change the value read by that Input
+Actuator: The part of an Input that a user can interact with in order to change the value read by that Input
 
 Output: A value sent from the controller to the game console
 
@@ -50,9 +50,10 @@ The TO is not required to abide by this request.
 If TOs are unable to determine that a controller is in full compliance, that controller may be banned at the TOs' sole discretion.
 If a game or match cannot be played out in full due to a controller malfunction which cannot be fixed in a timely manner, and the player using the controller does not have a replacement controller readily available, the player may be disqualified at the sole discretion of TOs.
 
-All controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification.
+All controllers or components for controllers that are not either Nintendo-made or officially licensed Gamecube Controllers must have non-obfuscated source code made available for inspection on request by any party, even if with a proprietary license that does not permit redistribution or modification. (This means that anyone gets to see the code and check for compliance, but some makers are hesitant to share for *mysterious* reasons)
+ALTERNATE: All source code must be made available under NDA to a trusted set of developers who can verify behavior. (This appeases hardware manufacturers who want to hide source code due to whatever reasons, but puts a burden on a small group, particularly an NDA that subjects them to being sued without them benefiting in any way, and that group's work must be trusted and cannot be audited)
 
-If requested by a TO or an opponent, players utilizing a reprogrammable controller must declare the firmware they are using.
+If requested by a TO or an opponent, players utilizing a reprogrammable controller must declare the firmware they are using. (This can be used later when inspecting controller inputs from replays)
 
 ## Communications
 
@@ -62,11 +63,12 @@ It must not be possible to simultaneously connect two controllers to one wireles
 
 ## Input Layout
 
-Generally, any placement of Inputs on the controller is permitted.
+Generally, any placement of Inputs on the controller is permitted. (Rectangles exist, therefore full button swapping must be legal)
 
-Aside from Combined Analog Digital Inputs (CADI), Emulated CADI, and orthogonal axes of a control stick Analog Input, Inputs must not share Actuators in a way that makes it difficult or impossible to actuate one without actuating another.
+Aside from Combined Analog Digital Inputs (CADI), Emulated CADI, and orthogonal axes of a control stick Analog Input, Inputs must not share Actuators in a way that makes it difficult or impossible to actuate one without actuating another. (no physical macros)
 
-Inputs must not have two separate Actuators that both influence the value read by that Input. For example, you may not tie a string to an analog stick in order to move it using a different finger.
+Inputs must not have two separate Actuators that both influence the value read by that Input. (no physical duplication of a single electrical button)
+Each Actuator must consist of exactly one rigid body. (no ASDI-down c-stick string)
 
 ## Configuration
 
@@ -78,16 +80,16 @@ Any such configuration modes are not permitted for use during gameplay.
 
 Digital Outputs consist of A, B, X, Y, Z, L digital, R digital, the four D-pad directions, and Start.
 
-If any Input influences A, X, Y, Z, D-pad directions, or Start Outputs, then it may not influence any other Output.
+If any Input influences A, X, Y, Z, D-pad directions, or Start Outputs, then it may not influence any other Output. (limiting rectangle modifiers)
 
-If any Input influences the B Output, it may only influence other outputs as a Modifier Input.
+If any Input influences the B Output, it may only influence other outputs as a Modifier Input. (limiting rectangle modifiers)
 
-If any Input influences L Digital or R Digital Outputs, it may either simultaneously actuate the corresponding Analog Trigger Output to a fixed value, or it may influence other outputs only as a Modifier Input.
+If any Input influences L Digital or R Digital Outputs, it may either simultaneously actuate the corresponding Analog Trigger Output to a fixed value, or it may influence other outputs only as a Modifier Input. (limiting rectangle modifiers)
 
-Each Digital Output may be influenced by no more than one Input of any type. (The Hori GCC is not permitted unless one Z button is disabled.)
+Each Digital Output may be influenced by no more than one Input of any type. (The Hori GCC is not permitted unless one Z button is disabled. This prevents things like the Optimal Potempkin Controller where duplicate buttons were lined up for frequently used input sequences)
 The only exception to this is that L Digital and R Digital Outputs may have the Digital Outputs disabled by a Dedicated Modifier Input that modifies the Digital Input or DHRAI to output only a fixed Analog Trigger Output for the corresponding Trigger. (This allows for R1 B0XX lightshield.)
 
-Digital Outputs must be off in their default states regardless of what type of Input influences each one.
+Digital Outputs must be off in their default states regardless of what type of Input influences each one. (No buttons that must be pressed to turn off an input)
 
 Each Digital Output must not have any delayed response to any change in the state of any Input that influences it. (This rule prohibits macros.)
 
@@ -95,9 +97,9 @@ Each Digital Output must not have any delayed response to any change in the stat
 
 The only type of Analog Input permitted to influence a Digital Output is a Digitized Half-Range Analog Input (DHRAI) such as the slider in GCC triggers, position-sensing analog keyboard switches, or force-sensitive buttons.
 
-If a DHRAI is used as a Modifier Input for an Analog Output as well as the primary influence on a Digital Output, the DHRAI thresholds must be the same for both. (Any digital interpretation of a DHRAI must act identically to a pure Digital Input.)
+If a DHRAI is used as a Modifier Input for an Analog Output as well as the primary influence on a Digital Output, the DHRAI thresholds must be the same for both. (Any digital interpretation of a DHRAI must act identically to a pure Digital Input; there must be no way to have two different thresholds for two digital behaviors.)
 
-If a Half-Range Analog Input used to influence a Digital Output is part of a Combined Analog Digital Input, the Digital Input part of the CADI must not influence any Outputs.
+If a Half-Range Analog Input used to influence a Digital Output is part of a Combined Analog Digital Input, the Digital Input part of the CADI must not influence any Outputs. (You can't use an analog threshold for a digital output, then use the physical digital part of that input to control something else)
 
 # Analog Outputs
 
@@ -112,46 +114,46 @@ Each Analog Stick Output may be influenced only by one of the following choices:
 
 Pairs of Half-Range Analog Inputs (HRAI), each used to influence one Analog Stick Output axis, must use average SOCD with one HRAI mapped to the range from (<=-1 to 0) and one ranging from (0 to >=1).
 
-Analog Inputs may not be used together with Digital Inputs for any given Analog Stick, even for different axes, but one Analog Stick may be fully analog while the other is fully digital.
+Analog Inputs may not be used together with Digital Inputs for any given Analog Stick, even for different axes, but one Analog Stick may be fully analog while the other is fully digital. (No mixing of analog and digital to try to get the best of both worlds)
 
 ### Analog Input Precision and Linearization
 
-Any Full-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 256 digital readout levels over the Input range.
+Any Full-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 256 digital readout levels over the Input range. (to prevent skipped values)
 
-Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 128 digital readout levels over the Input range.
+Any Half-Range Analog Inputs used to influence the Analog Stick Outputs must have a resolution of at least 128 digital readout levels over the Input range. (to prevent skipped values)
 
 If and only if the relation between the motion of an Analog Input's Actuator and the value it measures is nonlinear, the value must be linearized before being presented to the console as an Analog Stick Output.
 This linearization must be a static mapping.
-For example, a stick with its position read by a Hall Effect sensor must have linearization performed, while a linear potentiometer must *not* have linearization performed.
+(For example, a stick with its position read by a Hall Effect sensor must have linearization performed, while a linear potentiometer must *not* have (non-)linearization performed.)
 
 As an exception to the linearization rule, OEM first-party or second-party controllers with linear potentiometers that have developed nonlinearity in potentiometers are not required to have their output linearized (due to the inability to do so).
 
 ### Analog Input, Analog Stick Outputs
 
-Remapping Distance Restriction: Aside from duplicating global coordinate shifts equivalent to initializing an OEM controller with an off-center stick, no input coordinate, after linearization, may be mapped to an output coordinate more than 18 Melee coordinate units away in a tangential direction, or more than 2 Melee coordinate units away in a radial direction, after applying normalization to fit within the 80-unit radius circle.
-Any such coordinate remapping must be static.
-This restriction exists to prevent modifications of the coordinate grid that make the game easier to play, while allowing adjustments to notches so that they may perform their intended function even when they are physically worn down.
+Remapping Distance Restriction: Aside from duplicating global coordinate shifts equivalent to initializing an OEM controller with an off-center stick, no input coordinate, after linearization, may be mapped to an output coordinate more than 18 Melee coordinate units away in a tangential direction, or more than 2 Melee coordinate units away in a radial direction, after applying normalization to fit within the 80-unit radius circle. (limit how far things can be remapped, particularly strictly towards or away from center to prevent things like the Goomwave uptilt rounding)
+Any such coordinate remapping must be static. (This isn't allowed to change based on any circumstances, whether that be stick inputs or button inputs)
+(This restriction exists to prevent modifications of the coordinate grid that make the game easier to play, while allowing adjustments to notches so that they may perform their intended function even when they are physically worn down.)
 
 Coordinate Snapping/Accessibility Restriction: The region of linearized Input coordinates corresponding to a given Output coordinate must not have its bounding box dimensions differ from the dimensions of the output coordinate by more than 30%, whether stretched or compressed.
-This restriction exists to prevent coordinate remapping that makes it easy to pinpoint specific values or that prevents you from ever outputting certain coordinates.
+(This restriction exists to prevent coordinate remapping that makes it easy to pinpoint specific values or that prevents you from ever outputting certain coordinates.)
 
 Exception: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
-This exception does not allow a violation of radial remapping distance restrictions.
-This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.
-This is not intended to allow, for example, a remapping of deadzone values not at the rim to be mapped to Y = +0.2875 to make uptilts easier.
+(This exception does not allow a violation of radial remapping distance restrictions.)
+(This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.)
+(This is not intended to allow, for example, a remapping of deadzone values not at the rim to be mapped to Y = +0.2875 to make uptilts easier.)
 
 Exception: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped to 0 even if that violates distance restrictions or if this results in inaccessible output coordinates.
-This exception is to allow third-party controllers to make 1.0 magnitude cardinals more accessible with analog sticks.
+(This exception is to allow third-party controllers to make 1.0 magnitude cardinals more accessible with analog sticks.)
 
 Exception: Linearized Input coordinates with |X| <= 5 and |Y| <= 5 may be mapped to the origin.
-This exception allows controllers to make the origin initialization more consistent.
+(This exception allows controllers to make origin initialization on Dolphin more consistent without affecting gameplay at all.)
 
 Digital Input Filtering:
-The Analog Stick Output may be digitally filtered, or processed, to change its response.
-All digital filtering of Analog Inputs for a given Analog Stick must completely ignore all other Inputs on the controller.
-If the filter output does not correspond directly to the filter input, the output shall be either stationary, moving towards, or accelerating towards the input to the filter.
+The Analog Stick Output may be digitally filtered, or processed, to change its response. (For example, to reduce snapback, or make certain techniques easier. We do not limit what can be made easier, but we will limit how it's done.)
+All digital filtering of Analog Inputs for a given Analog Stick must completely ignore all other Inputs on the controller. (No using buttons or the other stick to change stick behavior)
+If the filter output does not correspond directly to the filter input, the output shall be either stationary, moving towards, or accelerating towards the input to the filter. (No "running ahead" of the stick in anticipation of future motion)
 
-Filters must be composed of weighted sums of the following values:
+Filters must be composed of weighted sums of the following values: (a limit on how filters may be implemented to prevent overly-smart "macros")
 
 * current and one-iteration previous input position in the same axis as the output being processed
 * current and one-iteration previous input velocity in the same axis as the output being processed
@@ -175,7 +177,7 @@ Permitted filters include but are not limited to:
 3. PhobGCC Smart Snapback Filter
 4. PhobGCC Waveshaping
 5. Simple low-pass filtering
-6. "energy-state tracking low-pass filter" (**may need more rule tweaking once we know more about how it's implemented**)
+6. "energy-state tracking low-pass filter" (Rienne's Goomwave firmware, **may need more rule tweaking or explicit permission once we know more about how it's implemented**)
 
 The following techniques are explicitly prohibited:
 1. Timers
@@ -189,18 +191,22 @@ Prohibited filters include but are not limited to:
 3. Timer-based empty pivot enhancement
 4. Angle- and timer-based ledgedash enhancement
 
-Filters may be linearly chained so that the output of one is used as the input to the next.
+Filters may be linearly chained so that the output of one is used as the input to the next. (you can use several filters in a row, but they must not go their separate ways and rejoin so as to get information from deep in the past)
 
 ### Digital Input, Analog Stick Outputs
 
 When simultaneous opposing cardinal Digital Inputs are pressed, the output must be resolved according to one of the following options:
 
-1. Neutral: when opposing cardinals are pressed, the output must be 0.
+1. Neutral: when opposing cardinals are pressed, the output must be 0 in that axis.
 2. Second-Input Priority, No Reactivation (2IP No Reactivation): when one cardinal is already pressed and its opposing cardinal is also pressed, the output follows the second cardinal. However, if the second cardinal is released, the output must be 0 instead of *reactivating* the first cardinal.
+
+(these are intended to prevent overly strong dashdance timing mixups)
+
+**For future research: travel time emulation**
 
 Modifier Inputs used to influence the output coordinate of an Analog Stick may not change the Zone (neutral, cardinal in the deadzone, or diagonal quadrant) of the coordinate.
 
-B, when used as a Modifier Input, must only increase the radius of the Analog Stick Output.
+B, when used as a Modifier Input, must only increase the radius of the Analog Stick Output and cannot change the Analog Stick Output angle more than 0.5 degrees, and cannot modify the Analog Stick Output coordinate to any that produces either side-B or up/down-B based on grounded/airborne state. (Why? This is imported wholesale from the SWT ruleset but just reworded)
 
 The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick:
 
@@ -208,29 +214,19 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 
 #### Digital Input, Control Stick Output
 
-Due to the ease of access to precise tilt values, the A button must be ignored (lockout for how many frames if pressed in it?) after an empty pivot (how do you define this?) when in the following zones:
-  * |X| < 0.8000, 0.2875 <= Y < 0.6625: 9 frames
-  * |X| < 0.8000, -0.6625 < Y <= -0.2875: 4 frames
-
-TODO: define existing box nerfs
-Pivot uptilt: 9 frames
-Pivot downtilt: 4 frames
-cardinal-diag-diag: 4 frames
-
-
 The following Control Stick coordinates must not be accessible using Digital Inputs:
 
 1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be accessible while |X| < 0.7000.
 2. Firefox Angles: All output coordinates must meet one of the following three criteria:
-  * 22.96° < atan(|Y/X|) < 67.04°
+  * 22.96° < atan(|Y/X|) < 67.04° (current B0XX angles)
   * |X| < 0.2875 (within the X deadzone)
   * |Y| < 0.2875 (within the Y deadzone)
 3. Directional Airdodge Angles: While either Digital L or Digital R outputs are active, all output coordinates must additionally meet the following criterion:
-  * 30.46° < atan(|Y/X|) < 59.54°
-4. Ice Climbers Desyncs:
+  * 26° < atan(|Y/X|) < 64° (current B0XX is 30.46° < atan(|Y/X|) < 59.54°)
+4. Ice Climbers Desyncs: inputting these coordinates will cause each Ice Climber to perform different actions.
   * X = ±0.8000: Popo Smash/Nana Tilt
   * Y = ±0.6625: Popo Smash/Nana Tilt
-  * X = ±0.7000: Popo Roll EXCEPT FOR Y = ±0.7000
+  * X = ±0.7000: Popo Roll, EXCEPT this is legal when Y = ±0.7000 since this is on the rim
   * Y = -0.7000: Popo Spotdodge/Nana Shield Drop EXCEPT FOR X = ±0.7000
   * X = +0.6250: Popo Run/Nana Runbrake
   * X = +0.7500: Popo Teeter Break/Nana Teeter
@@ -249,7 +245,7 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * atan(|Y/X|) <= 50° (forward tilt instead of uptilt/downtilt)
   * |Y| >= 0.6625 (produce a tap jump)
   * |X| < 0.2875 (within the X deadzone)
-7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible:
+7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible: (using any of these coordinates makes the second step go in the same direction as the first)
   * X = ±0.5000, Y = 0
   * X = 0,       Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
@@ -258,16 +254,16 @@ The following Control Stick coordinates must not be accessible using Digital Inp
 Conditionally Inaccessible Coordinates:
 
 1. While B is pressed, the following coordinates must must not be accessible:
-  * 0.2875 <= |X| <= 0.5875, |Y| <= 0.5375: turnaround Neutral-B
-2. When a cardinal is followed by a diagonal on a later frame, the diagonal mirror opposite across the cardinal is banned (eaten input) for 4 frames.
+  * 0.2875 <= |X| <= 0.5875, |Y| <= 0.5375: to prevent turnaround Neutral-B
+2. When a cardinal is followed by a diagonal on a later frame, the diagonal mirror opposite across the cardinal is banned (eaten input) for 4 frames. (this is the B0XX turnaround uptilt nerf)
+3. After the last input where Y < 0, the following coordinates must be inaccessible for two frames:
+  * 0.2875 <= |Y| <= 0.6750 (this causes overly quick down to up movements cause a tap jump, similar to the difficulty of such a stick input)
 
 Conditionally Inaccessible Buttons:
 
-After performing an empty pivot, which is defined as crossing from one horizontal cardinal to the other, then dropping below |X| = 0.8000 within 2 frames, any A Input actuations beginning during certain lockout windows are to be prevented from Influencing the A Output if the stick is in the following coordinate ranges:
+After performing an empty pivot, which is defined as crossing from one horizontal cardinal to the other, then dropping below |X| = 0.8000 within 2 frames, any A Input actuations beginning during certain lockout windows are to be prevented from Influencing the A Output if the stick is in the following coordinate ranges: **??? to be defined better** (this is the B0XX pivot uptilt and downtilt nerfs)
 
-TODO: coordinates and times
-
-If an A Input actuation that began in a forbidden stick condition is still active when the condition ends (when the stick moves out of those coordinate ranges or when the lockout window ends), the A Output must not be activated.
+If an A Input actuation that began in a forbidden stick condition is still active when the condition ends (when the stick moves out of those coordinate ranges or when the lockout window ends), the A Output must not be activated. (do not let you get the earliest possible banned action for free by buffering)
 
 #### Digital Input, C-Stick Output
 
@@ -301,35 +297,35 @@ When Z is held, the resulting lightshield is equivalent to the lightshield from 
 
 ### Analog Trigger General Rules
 
-If either the L or R Analog Trigger Output is influenced solely by either Digital Inputs or Digitized Half-Range Analog Inputs, both Analog Trigger Outputs must be influenced solely by either Digital Inputs or by Digitized Half-Range Analog Inputs.
+If either the L or R Analog Trigger Output is influenced solely by either Digital Inputs or Digitized Half-Range Analog Inputs, both Analog Trigger Outputs must be influenced solely by either Digital Inputs or by Digitized Half-Range Analog Inputs. (You don't get to have both fully analog control and instant pinpointing of a particular value)
 
-Exception: The Digital Trigger Output and Analog Trigger Output of the same trigger may be actuated simultaneously by the same Digital Input or Digitized Half-Range Analog Input.
+Exception: The Digital Trigger Output and Analog Trigger Output of the same trigger may be actuated simultaneously by the same Digital Input or Digitized Half-Range Analog Input. (this is merely for convenience, allowing a digital trigger that also works with newer Smash games)
 
 ### Analog Input, Analog Trigger Output
 
-The Analog Trigger outputs may be influenced only by Half-Range Analog Inputs.
+The Analog Trigger outputs may be influenced only by Half-Range Analog Inputs. (No defaulting to a middle value)
 
-The default Output must be 0.
+The default Output must be 0. (No defaulting to the max range)
 
-Any Analog Inputs used to influence the Analog Trigger Outputs must have a resolution of at least 64 digital readout levels over the full Input motion range.
+Any Analog Inputs used to influence the Analog Trigger Outputs must have a resolution of at least 64 digital readout levels over the full Input motion range. (limit how coarse the resolution can be to limit the number of pinpoints available)
 
-The Analog Input controlling an Analog Trigger Output may be the analog part of a CADI or Emulated CADI but if the digital part of the CADI is used it must Influence only the same trigger's Digital Output.
+The Analog Input controlling an Analog Trigger Output may be the analog part of a CADI or Emulated CADI but if the digital part of the CADI is used it must Influence only the same trigger's Digital Output. (no having analog shield and a non-shield function on the same trigger)
 
-If and only if the relation between the motion of an Analog Input's Actuator and the value it measures is nonlinear, the value must be linearized before being presented to the console as an Analog Trigger Output.
-This linearization must be a static mapping.
+If and only if the relation between the motion of an Analog Input's Actuator and the value it measures is nonlinear, the value must be linearized before being presented to the console as an Analog Trigger Output. (handle hall effect triggers)
+This linearization must be a static mapping. (you can't switch behaviors)
 
 Nonlinearization of this is permitted with the following restrictions:
 
-The mapping between the linearized Analog Trigger Input and the Analog Trigger Output must be linear with an intercept of 0 from 43 to 49.
+The mapping between the linearized Analog Trigger Input and the Analog Trigger Output must be linear with a Y-intercept of 0 from 43 to 49. (this ensures that you can't easily pinpoint better-than-Z-lightshield)
 
-The mapping between the linearized Analog Trigger Input and the Analog Trigger Output must be monotonically non-decreasing.
+The mapping between the linearized Analog Trigger Input and the Analog Trigger Output must be monotonically non-decreasing. (no on-off-on-off analog output for easy L-cancels)
 
-Any nonlinear relation between the linearized Analog Trigger Input and the Analog Trigger Output must be a static mapping.
+Any nonlinear relation between the linearized Analog Trigger Input and the Analog Trigger Output must be a static mapping. (you can't switch behaviors)
 
 Digital Input Filtering:
 The Analog Trigger Output may be digitally filtered, or processed, to change its response.
 All digital filtering of Analog Inputs for a given Analog Trigger must completely ignore all other Inputs on the controller.
-If the filter output does not correspond directly to the filter input, the output shall be either stationary, moving towards, or accelerating towards the input to the filter.
+If the filter output does not correspond directly to the filter input, the output shall be either stationary, moving towards, or accelerating towards the input to the filter. (similar restrictions to the stick filters)
 
 Filters must be composed of weighted sums of the following values:
 
@@ -355,6 +351,6 @@ Each Analog Trigger Output may be influenced by at most a single standalone Digi
 
 The Analog Trigger Output value must default to 0.
 
-The Analog Trigger Output value when influenced by Digital Inputs must not be from 43 to 48 inclusive.
+The Analog Trigger Output value when influenced by Digital Inputs must not be from 43 to 48 inclusive. (prohibit better-than-Z lightshield)
 
-If a Digital Input used to influence an Analog Trigger Output is part of a Combined Analog Digital Input, the Analog Input part of the CADI must not influence any Outputs.
+If a Digital Input used to influence an Analog Trigger Output is part of a Combined Analog Digital Input, the Analog Input part of the CADI must not influence any Outputs. (once you use the digital part for a shield, the analog part can't be used for anything else, including the same shield)
