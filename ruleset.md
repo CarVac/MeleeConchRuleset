@@ -258,10 +258,9 @@ Conditionally Inaccessible Coordinates:
 
 1. While B is pressed, the following coordinates must must not be accessible:
   * 0.2875 <= |X| <= 0.5875, |Y| <= 0.5375: to prevent turnaround Neutral-B
-2. When a cardinal is followed by a diagonal on a later frame, the diagonal mirror opposite across the cardinal is banned (eaten input) for 4 frames. (this is the B0XX turnaround uptilt nerf)
+2. When a cardinal is followed by a diagonal on a later frame, the diagonal mirror opposite across the cardinal is banned (eaten input) for 4 frames. (this is the B0XX sdi nerf)
 3. After the last input where Y < 0, the following coordinates must be inaccessible for two frames:
   * 0.2875 <= |Y| <= 0.6750 (this causes overly quick down to up movements cause a tap jump, similar to the difficulty of such a stick input)
-4. **SDI Lockouts: todo**
 
 Conditionally Inaccessible Buttons:
 
