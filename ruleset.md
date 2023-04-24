@@ -217,6 +217,8 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 
 #### Digital Input, Control Stick Output
 
+TODO: for a given modifier, if down can maintain crouch then diagonal must not dash
+
 The following Control Stick coordinates must not be accessible using Digital Inputs:
 
 1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be accessible while |X| < 0.7000.
