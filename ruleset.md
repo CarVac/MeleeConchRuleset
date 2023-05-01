@@ -66,6 +66,8 @@ It must not be possible to simultaneously connect two controllers to one wireles
 
 Generally, any placement of Inputs on the controller is permitted. (Rectangles exist, therefore full button swapping must be legal)
 
+However, the controls may be manipulated by no more than 2 limbs. (No bite buttons, no footpedals, unless you have no use of an arm)
+
 Aside from Combined Analog Digital Inputs (CADI), Emulated CADI, and orthogonal axes of a control stick Analog Input, Inputs must not share Actuators in a way that makes it difficult or impossible to actuate one without actuating another. (no physical macros)
 
 Inputs must not have two separate Actuators that both influence the value read by that Input. (no physical duplication of a single electrical button)
