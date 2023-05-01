@@ -94,7 +94,9 @@ Digital Outputs must be off in their default states regardless of what type of I
 
 Each Digital Output must not have any delayed response to any change in the state of any Input that influences it. (This rule prohibits macros.)
 
-EXCEPTION: lockouts related to Digital Input, Analog Output controls (rectangle nerfs)
+EXCEPTION: Lockouts and other transfer functions related to Digital Input, Analog Output controls (rectangle nerfs)
+
+EXCEPTION: Start and D-pad inputs may have delayed responses imposed by various means to reduce the likelihood of misinputs.
 
 ## Analog Input, Digital Output
 
@@ -133,20 +135,24 @@ As an exception to the linearization rule, OEM first-party or second-party contr
 
 ### Analog Input, Analog Stick Outputs
 
-Remapping Distance Restriction: Aside from duplicating global coordinate shifts equivalent to initializing an OEM controller with an off-center stick, no input coordinate, after linearization, may be mapped to an output coordinate more than 18 Melee coordinate units away in a tangential direction, or more than 2 Melee coordinate units away in a radial direction, after applying normalization to fit within the 80-unit radius circle. (limit how far things can be remapped, particularly strictly towards or away from center to prevent things like the Goomwave uptilt rounding)
-Any such coordinate remapping must be static. (This isn't allowed to change based on any circumstances, whether that be stick inputs or button inputs)
+Remapping Restriction: Coordinates may only be remapped by changing their angle from the origin, never their distance.
+Any such angle remapping must be static. (This isn't allowed to change based on any circumstances, whether that be stick inputs or button inputs)
+Angle remappings be piecewise linear and continuous around the circle. (no gaps or overlap)
+The piecewise linear angle remappings must be defined by no more than 16 segments around the circle, each bounded by the 4 cardinals, 4 diagonals, and 8 modder-added notch angles (one between each cardinal and diagonal).
+The angle between a diagonal's output angle and each adjacent cardinal must be stretched by no more than 30% or compressed by no more than 23.1% relative to before remapping.
+The angle between each modder-added notch angle and each adjacent cardinal or diagonal must be stretched by no more than 50% or compressed by no more than 33.3% relative to before remapping.
 (This restriction exists to prevent modifications of the coordinate grid that make the game easier to play, while allowing adjustments to notches so that they may perform their intended function even when they are physically worn down.)
-
-Coordinate Snapping/Accessibility Restriction: The region of linearized Input coordinates corresponding to a given Output coordinate must not have its bounding box dimensions differ from the dimensions of the output coordinate by more than 30%, whether stretched or compressed.
-(This restriction exists to prevent coordinate remapping that makes it easy to pinpoint specific values or that prevents you from ever outputting certain coordinates.)
 
 Exception: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
 (This exception does not allow a violation of radial remapping distance restrictions.)
 (This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.)
 (This is not intended to allow, for example, a remapping of deadzone values not at the rim to be mapped to Y = +0.2875 to make uptilts easier.)
 
-Exception: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped to 0 even if that violates distance restrictions or if this results in inaccessible output coordinates.
-(This exception is to allow third-party controllers to make 1.0 magnitude cardinals more accessible with analog sticks.)
+Exception: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped to 0 even if that violates other remapping restrictions or if this results in inaccessible output coordinates.
+(This exception is to allow third-party controllers to make 1.0 magnitude cardinals more accessible with analog sticks even with older UCF versions)
+
+Exception: Input coordinates outside the Melee unit circle and within the Melee deadzone may have their smaller coordinate axis mapped away from 0 to ±7 even if that violates distance restrictions or if this results in inaccessible output coordinates.
+(This exception is to allow third-party controllers to avoid 1.0 magnitude cardinals even on newer UCF versions)
 
 Exception: Linearized Input coordinates with |X| <= 5 and |Y| <= 5 may be mapped to the origin.
 (This exception allows controllers to make origin initialization on Dolphin more consistent without affecting gameplay at all.)
@@ -205,7 +211,9 @@ When simultaneous opposing cardinal Digital Inputs are pressed, the output must 
 
 (these are intended to prevent overly strong dashdance timing mixups)
 
-**For future research: travel time emulation**
+**For future research: travel time emulation in combination with various SOCD versions**
+
+**For future research: restrictions on combinations of coordinates accessible as a single modifier set**
 
 Modifier Inputs used to influence the output coordinate of an Analog Stick may not change the Zone (neutral, cardinal in the deadzone, or diagonal quadrant) of the coordinate.
 
@@ -216,8 +224,6 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. These are on the quadrant boundaries and enable the steepest/shallowest angles, "mid-angle" tilts and smashes, tap jump short hop with the stick outside of the deadzone, and double-jumping backwards with Yoshi/Jigglypuff/Kirby without turning around.
 
 #### Digital Input, Control Stick Output
-
-TODO: for a given modifier, if down can maintain crouch then diagonal must not dash
 
 The following Control Stick coordinates must not be accessible using Digital Inputs:
 
