@@ -140,15 +140,15 @@ As an exception to the linearization rule, OEM first-party or second-party contr
 ### Analog Input, Analog Stick Outputs
 
 Remapping Restriction: Coordinates may only be remapped by changing their angle from the origin, never their distance.
-Any such angle remapping must be static. (This isn't allowed to change based on any circumstances, whether that be stick inputs or button inputs)
-Angle remappings be piecewise linear and continuous around the circle. (no gaps or overlap)
-The piecewise linear angle remappings must be defined by no more than 16 segments around the circle, each bounded by the 4 cardinals, 4 diagonals, and 8 modder-added notch angles (one between each cardinal and diagonal).
-The angle between a diagonal's output angle and each adjacent cardinal must be stretched by no more than 30% or compressed by no more than 23.1% relative to before remapping.
-The angle between each modder-added notch angle and each adjacent cardinal or diagonal must be stretched by no more than 50% or compressed by no more than 33.3% relative to before remapping.
-(This restriction exists to prevent modifications of the coordinate grid that make the game easier to play, while allowing adjustments to notches so that they may perform their intended function even when they are physically worn down.)
 
-Exception: Output coordinates that are within 3 units of or entirely contained in the Melee Deadzone may have linearized Input coordinates that are more than 30% smaller bounding box and/or 50% smaller in area than the corresponding Output coordinates.
-(This exception does not allow a violation of radial remapping distance restrictions.)
+* Any such angle remapping must be static. (This isn't allowed to change based on any circumstances, whether that be stick inputs or button inputs)
+* Angle remappings be piecewise linear and continuous around the circle. (no gaps or overlap)
+* The piecewise linear angle remappings must be defined by no more than 16 segments around the circle, each bounded by the 4 cardinals, 4 diagonals, and 8 modder-added notch angles (one between each cardinal and diagonal).
+* The angle between a diagonal's output angle and each adjacent cardinal must be stretched by no more than 30% or compressed by no more than 23.1% relative to before remapping.
+* The angle between each modder-added notch angle and each adjacent cardinal or diagonal must be stretched by no more than 50% or compressed by no more than 33.3% relative to before remapping.
+* (This restriction exists to prevent modifications of the coordinate grid that make the game easier to play, while allowing adjustments to notches so that they may perform their intended function even when they are physically worn down.)
+
+Exception: Input angle sectors that would be entirely within the Melee deadzone on the rim of the Melee unit circle are permitted to be stretched so that they can reach an angle equivalent to the coordinate 0.3250, 0.9375.
 (This exception is to allow "rescuing" of heavily worn notches that were originally intended to keep the stick out of the the deadzone.)
 (This is not intended to allow, for example, a remapping of deadzone values not at the rim to be mapped to Y = +0.2875 to make uptilts easier.)
 
