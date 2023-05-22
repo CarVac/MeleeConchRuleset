@@ -322,6 +322,7 @@ The Analog Trigger outputs may be influenced only by Half-Range Analog Inputs. (
 
 The default Output must be 0. (No defaulting to the max range)
 
+TODO: define better limits on this
 Any Analog Inputs used to influence the Analog Trigger Outputs must have a resolution of at least 64 digital readout levels over the full Input motion range. (limit how coarse the resolution can be to limit the number of pinpoints available)
 
 The Analog Input controlling an Analog Trigger Output may be the analog part of a CADI or Emulated CADI but if the digital part of the CADI is used it must Influence only the same trigger's Digital Output. (no having analog shield and a non-shield function on the same trigger)
