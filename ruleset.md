@@ -278,6 +278,8 @@ Conditionally Inaccessible Buttons:
 
 After performing an empty pivot, which is defined as crossing from one horizontal cardinal to the other, then dropping below |X| = 0.8000 within 2 frames, any A Input actuations beginning during certain lockout windows are to be prevented from Influencing the A Output if the stick is in the following coordinate ranges: **??? to be defined better** (this is the B0XX pivot uptilt and downtilt nerfs)
 
+Maybe have uptilt nerf be a jump input instead of an A lockout
+
 If an A Input actuation that began in a forbidden stick condition is still active when the condition ends (when the stick moves out of those coordinate ranges or when the lockout window ends), the A Output must not be activated. (do not let you get the earliest possible banned action for free by buffering)
 
 #### Digital Input, C-Stick Output
