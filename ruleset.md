@@ -261,8 +261,8 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * |Y| >= 0.6625 (produce a tap jump)
   * |X| < 0.2875 (within the X deadzone)
 7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible: (using any of these coordinates makes the second step go in the same direction as the first)
-  * X = ±0.5000, Y = 0
-  * X = 0,       Y = ±0.5000
+  * X = ±0.5000, Y < ±0.2875
+  * X < ±0.2875, Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
   * X = ±0.3000, Y = ±0.4000
 
