@@ -265,6 +265,8 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * X = 0,       Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
   * X = ±0.3000, Y = ±0.4000
+8. Aerial Up-B Without Midair Jump
+  * Y >= 0.5500, Y < 0.6625
 
 Conditionally Inaccessible Coordinates:
 
