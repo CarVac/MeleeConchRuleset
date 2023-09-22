@@ -246,7 +246,7 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * X = +0.6250: Popo Run/Nana Runbrake
   * X = +0.7500: Popo Teeter Break/Nana Teeter
   * Y = +0.5625: Popo Jump out of Dash
-  * |X| <= 0.5875, Y = -0.5500: Grounded Nana Neutral-B, Popo Up/Down-B
+  * |X| <= 0.5875, Y = -0.5500: Grounded Nana Solo Neutral-B (MUST NEVER HAPPEN EVER, EVEN RANDOMLY)
   * X = +0.5250, Y = +0.6250: two different aerials
   * X = -0.4375, Y = +0.5250: two different aerials
 5. Stronger diagonal DI than is accessible on the analog stick rim:
@@ -261,8 +261,8 @@ The following Control Stick coordinates must not be accessible using Digital Inp
   * |Y| >= 0.6625 (produce a tap jump)
   * |X| < 0.2875 (within the X deadzone)
 7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible: (using any of these coordinates makes the second step go in the same direction as the first)
-  * X = ±0.5000, Y = 0
-  * X = 0,       Y = ±0.5000
+  * X = ±0.5000, Y < ±0.2875
+  * X < ±0.2875, Y = ±0.5000
   * X = ±0.4000, Y = ±0.3000
   * X = ±0.3000, Y = ±0.4000
 8. Aerial Up-B Without Midair Jump
@@ -279,6 +279,8 @@ Conditionally Inaccessible Coordinates:
 Conditionally Inaccessible Buttons:
 
 After performing an empty pivot, which is defined as crossing from one horizontal cardinal to the other, then dropping below |X| = 0.8000 within 2 frames, any A Input actuations beginning during certain lockout windows are to be prevented from Influencing the A Output if the stick is in the following coordinate ranges: **??? to be defined better** (this is the B0XX pivot uptilt and downtilt nerfs)
+
+Maybe have uptilt nerf be a jump input instead of an A lockout
 
 If an A Input actuation that began in a forbidden stick condition is still active when the condition ends (when the stick moves out of those coordinate ranges or when the lockout window ends), the A Output must not be activated. (do not let you get the earliest possible banned action for free by buffering)
 
@@ -324,6 +326,7 @@ The Analog Trigger outputs may be influenced only by Half-Range Analog Inputs. (
 
 The default Output must be 0. (No defaulting to the max range)
 
+TODO: define better limits on this
 Any Analog Inputs used to influence the Analog Trigger Outputs must have a resolution of at least 64 digital readout levels over the full Input motion range. (limit how coarse the resolution can be to limit the number of pinpoints available)
 
 The Analog Input controlling an Analog Trigger Output may be the analog part of a CADI or Emulated CADI but if the digital part of the CADI is used it must Influence only the same trigger's Digital Output. (no having analog shield and a non-shield function on the same trigger)
