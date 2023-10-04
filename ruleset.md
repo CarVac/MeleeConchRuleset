@@ -234,8 +234,8 @@ The following Control Stick coordinates must not be targeted using Digital Input
 1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be targeted while |X| < 0.7000.
 2. Firefox Angles: All target coordinates must meet one of the following three criteria:
   * 22.96° < atan(|Y/X|) < 67.04° (current B0XX angles)
-  * |X| < 0.2875 (within the X deadzone)
-  * |Y| < 0.2875 (within the Y deadzone)
+  * |X| <= 0.2750 (within the X deadzone)
+  * |Y| <= 0.2750 (within the Y deadzone)
 3. Ice Climbers Desyncs: inputting these coordinates will cause each Ice Climber to perform different actions. Most of them are conditionally allowed given input coordinate fuzzing.
   * ~~X = ±0.8000: Popo Smash/Nana Tilt~~
   * ~~Y = ±0.6625: Popo Smash/Nana Tilt~~
@@ -247,12 +247,12 @@ The following Control Stick coordinates must not be targeted using Digital Input
   * |X| <= 0.5875, Y = -0.5500: Grounded Nana Solo Neutral-B, with a 1-unit keepout zone in all directions
   * X = +0.5250, Y = +0.6250: two different aerials, with a 1-unit keepout zone in all directions
   * X = -0.4375, Y = +0.5250: two different aerials, with a 1-unit keepout zone in all directions
-4. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
-  * atan(|Y/X|) <= 50° (forward tilt instead of uptilt/downtilt)
-  * |Y| >= 0.6625 (produce a tap jump)
-  * |X| < 0.2875 (within the X deadzone)
+4. 2-Frame Turnaround Uptilt and Downtilt
+  * atan(|Y/X|) >= 50° (forward tilt instead of uptilt/downtilt)
+  * -0.6875 <= Y <= 0.6500 (produce a downsmash or tap jump/upsmash)
+  * |X| >= 0.2875 (outside the X deadzone)
 5. Aerial Up-B Without Midair Jump
-  * Y >= 0.5500, Y < 0.6625
+  * Y >= 0.5500, Y <= 0.6500 (no keep-out zone)
 6. Peach Parasol Dash 2f window: the following coordinates must be inaccessible
   * 56.95° <= atan(Y/|X|) <= 60.10° while Y >= 0.2875 (no 1-unit keep-out zone)
 7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible: (using any of these coordinates makes the second step go in the same direction as the first)
@@ -267,7 +267,7 @@ Conditionally Inaccessible Coordinates:
   * 0.2875 <= |Y| <= 0.6500
 2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced with one of rim or greater radius.
   * 0.2875 <= |X| <= 0.7875 on the opposite side of the last dash input
-  * 0.2875 <= |Y| < 0.6500
+  * 0.2875 <= |Y| <= 0.6500
 
 Conditionally Inaccessible Buttons:
 
