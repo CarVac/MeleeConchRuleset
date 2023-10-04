@@ -221,7 +221,7 @@ When simultaneous opposing cardinal Digital Inputs are pressed, the output must 
 
 Modifier Inputs used to influence the output coordinate of an Analog Stick may not change the Zone (neutral, cardinal in the deadzone, or diagonal quadrant) of the coordinate. WHAT ABOUT ANGLED FSMASH
 
-B, when used as a Modifier Input, cannot change the Analog Stick Output angle more than 2 degrees.
+B, when used as a Modifier Input, cannot change the targeted Analog Stick Output angle more than 0.5 degrees.
 
 The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick:
 
