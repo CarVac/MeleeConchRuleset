@@ -1,0 +1,266 @@
+[
+    {
+        "name": "Near Y deadzone (shorthop) keep-out",
+        "color": [
+            46,
+            194,
+            126,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 22,
+        "minY": 0,
+        "maxX": 25,
+        "maxY": 80,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Double jump no-turnaround keep-out",
+        "color": [
+            46,
+            194,
+            126,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 0,
+        "minY": 22,
+        "maxX": 80,
+        "maxY": 24,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Solo Nana ice-block keep-out",
+        "color": [
+            46,
+            194,
+            126,
+            255
+        ],
+        "quadrants": [
+            false,
+            false,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 0,
+        "minY": 43,
+        "maxX": 48,
+        "maxY": 45,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Two different aerials 2 keep-out",
+        "color": [
+            46,
+            194,
+            126,
+            255
+        ],
+        "quadrants": [
+            false,
+            true,
+            false,
+            false
+        ],
+        "displayMode": 0,
+        "minX": 34,
+        "minY": 41,
+        "maxX": 36,
+        "maxY": 43,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Near Y deadzone (shorthop)",
+        "color": [
+            224,
+            27,
+            36,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 23,
+        "minY": 0,
+        "maxX": 24,
+        "maxY": 80,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Double jump no-turnaround",
+        "color": [
+            224,
+            27,
+            36,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 0,
+        "minY": 23,
+        "maxX": 80,
+        "maxY": 23,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Solo Nana ice-block",
+        "color": [
+            224,
+            27,
+            36,
+            255
+        ],
+        "quadrants": [
+            false,
+            false,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 0,
+        "minY": 44,
+        "maxX": 47,
+        "maxY": 44,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Shield drop down",
+        "color": [
+            181,
+            131,
+            90,
+            255
+        ],
+        "quadrants": [
+            false,
+            false,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 0,
+        "minY": 53,
+        "maxX": 55,
+        "maxY": 55,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Up-B without Midair Jump",
+        "color": [
+            153,
+            193,
+            241,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            false,
+            false
+        ],
+        "displayMode": 0,
+        "minX": 0,
+        "minY": 44,
+        "maxX": 80,
+        "maxY": 52,
+        "angleMin": 0,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Parasol Dash 2f",
+        "color": [
+            220,
+            138,
+            221,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            false,
+            false
+        ],
+        "displayMode": 0,
+        "minX": 0,
+        "minY": 0,
+        "maxX": 80,
+        "maxY": 80,
+        "angleMin": 56.95,
+        "angleMax": 60.1,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "2 frame turnaround up/downtilt",
+        "color": [
+            53,
+            132,
+            228,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 23,
+        "minY": 0,
+        "maxX": 80,
+        "maxY": 52,
+        "angleMin": 50,
+        "angleMax": 90,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    }
+]

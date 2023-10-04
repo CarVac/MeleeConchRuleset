@@ -219,62 +219,55 @@ When simultaneous opposing cardinal Digital Inputs are pressed, the output must 
 
 **For future research: restrictions on combinations of coordinates accessible as a single modifier set**
 
-Modifier Inputs used to influence the output coordinate of an Analog Stick may not change the Zone (neutral, cardinal in the deadzone, or diagonal quadrant) of the coordinate.
+Modifier Inputs used to influence the output coordinate of an Analog Stick may not change the Zone (neutral, cardinal in the deadzone, or diagonal quadrant) of the coordinate. WHAT ABOUT ANGLED FSMASH
 
-B, when used as a Modifier Input, must only increase the radius of the Analog Stick Output and cannot change the Analog Stick Output angle more than 0.5 degrees, and cannot modify the Analog Stick Output coordinate to any that produces either side-B or up/down-B based on grounded/airborne state. (Why? This is imported wholesale from the SWT ruleset but just reworded)
+B, when used as a Modifier Input, cannot change the Analog Stick Output angle more than 2 degrees.
 
 The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick:
 
-1. Cardinal/Quadrant Boundaries: X or Y ±0.2875 and ±0.3000 must not be accessible. These are on the quadrant boundaries and enable the steepest/shallowest angles, "mid-angle" tilts and smashes, tap jump short hop with the stick outside of the deadzone, and double-jumping backwards with Yoshi/Jigglypuff/Kirby without turning around.
+1. Cardinal/Quadrant Boundaries: X ±0.2875 and Y ±0.2875 and ±0.3000 must not be accessible. These are on the quadrant boundaries and enable the steepest/shallowest angles, "mid-angle" tilts and smashes, tap jump short hop with the stick outside of the deadzone, and double-jumping backwards with Yoshi/Jigglypuff/Kirby without turning around.
 
 #### Digital Input, Control Stick Output
 
-The following Control Stick coordinates must not be accessible using Digital Inputs:
+The following Control Stick coordinates must not be targeted using Digital Inputs (prior to RNG fuzzing):
 
-1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be accessible while |X| < 0.7000.
-2. Firefox Angles: All output coordinates must meet one of the following three criteria:
+1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be targeted while |X| < 0.7000.
+2. Firefox Angles: All target coordinates must meet one of the following three criteria:
   * 22.96° < atan(|Y/X|) < 67.04° (current B0XX angles)
   * |X| < 0.2875 (within the X deadzone)
   * |Y| < 0.2875 (within the Y deadzone)
-3. Directional Airdodge Angles: While either Digital L or Digital R outputs are active, all output coordinates must additionally meet the following criterion:
-  * 26° < atan(|Y/X|) < 64° (current B0XX is 30.46° < atan(|Y/X|) < 59.54°)
-4. Ice Climbers Desyncs: inputting these coordinates will cause each Ice Climber to perform different actions.
-  * X = ±0.8000: Popo Smash/Nana Tilt
-  * Y = ±0.6625: Popo Smash/Nana Tilt
-  * X = ±0.7000: Popo Roll, EXCEPT this is legal when Y = ±0.7000 since this is on the rim
-  * Y = -0.7000: Popo Spotdodge/Nana Shield Drop EXCEPT FOR X = ±0.7000
-  * X = +0.6250: Popo Run/Nana Runbrake
-  * X = +0.7500: Popo Teeter Break/Nana Teeter
-  * Y = +0.5625: Popo Jump out of Dash
-  * |X| <= 0.5875, Y = -0.5500: Grounded Nana Solo Neutral-B (MUST NEVER HAPPEN EVER, EVEN RANDOMLY)
-  * X = +0.5250, Y = +0.6250: two different aerials
-  * X = -0.4375, Y = +0.5250: two different aerials
-5. Stronger diagonal DI than is accessible on the analog stick rim:
-  * X = ±0.7000, Y = ±0.7125
-  * X = ±0.7125, Y = ±0.7000
-  * X = ±0.6875, Y = ±0.7250
-  * X = ±0.7250, Y = ±0.6875
-  * X = ±0.6750, Y = ±0.7375
-  * X = ±0.7375, Y = ±0.6750
-6. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
+3. Ice Climbers Desyncs: inputting these coordinates will cause each Ice Climber to perform different actions. Most of them are conditionally allowed given input coordinate fuzzing.
+  * ~~X = ±0.8000: Popo Smash/Nana Tilt~~
+  * ~~Y = ±0.6625: Popo Smash/Nana Tilt~~
+  * ~~X = ±0.7000: Popo Roll, EXCEPT this is legal when Y = ±0.7000 since this is on the rim~~
+  * ~~Y = -0.7000: Popo Spotdodge/Nana Shield Drop EXCEPT FOR X = ±0.7000~~
+  * ~~X = +0.6250: Popo Run/Nana Runbrake~~
+  * ~~X = +0.7500: Popo Teeter Break/Nana Teeter~~
+  * ~~Y = +0.5625: Popo Jump out of Dash~~
+  * |X| <= 0.5875, Y = -0.5500: Grounded Nana Solo Neutral-B, with a 1-unit keepout zone in all directions
+  * X = +0.5250, Y = +0.6250: two different aerials, with a 1-unit keepout zone in all directions
+  * X = -0.4375, Y = +0.5250: two different aerials, with a 1-unit keepout zone in all directions
+4. 2-Frame Turnaround Uptilt and Downtilt: All output coordinates must meet one of the following three criteria:
   * atan(|Y/X|) <= 50° (forward tilt instead of uptilt/downtilt)
   * |Y| >= 0.6625 (produce a tap jump)
   * |X| < 0.2875 (within the X deadzone)
-7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible: (using any of these coordinates makes the second step go in the same direction as the first)
-  * X = ±0.5000, Y < ±0.2875
-  * X < ±0.2875, Y = ±0.5000
-  * X = ±0.4000, Y = ±0.3000
-  * X = ±0.3000, Y = ±0.4000
-8. Aerial Up-B Without Midair Jump
+5. Aerial Up-B Without Midair Jump
   * Y >= 0.5500, Y < 0.6625
+6. Peach Parasol Dash 2f window: the following coordinates must be inaccessible
+  * 56.95° <= atan(Y/|X|) <= 60.10° while Y >= 0.2875 (no 1-unit keep-out zone)
+7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible: (using any of these coordinates makes the second step go in the same direction as the first)
+  * ~~X = ±0.5000, Y < ±0.2875~~ Note: may be banned in an update if found to be abusable at 50% chance
+  * ~~X < ±0.2875, Y = ±0.5000~~ Note: may be banned in an update if found to be abusable at 50% chance
+  * ~~X = ±0.4000, Y = ±0.3000~~
+  * ~~X = ±0.3000, Y = ±0.4000~~
 
 Conditionally Inaccessible Coordinates:
 
-1. While B is pressed, the following coordinates must must not be accessible:
-  * 0.2875 <= |X| <= 0.5875, |Y| <= 0.5375: to prevent turnaround Neutral-B
-2. When a cardinal is followed by a diagonal on a later frame, the diagonal mirror opposite across the cardinal is banned (eaten input) for 4 frames. (this is the B0XX sdi nerf)
-3. After the last input where Y < 0, the following coordinates must be inaccessible for two frames:
-  * 0.2875 <= |Y| <= 0.6750 (this causes overly quick down to up movements cause a tap jump, similar to the difficulty of such a stick input)
+1. If one of the following coordinates occurs within at least 2 frames after the last input where Y < 0, the following coordinates must be promoted to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-rim coordinate) for at least 2 frames.
+  * 0.2875 <= |Y| <= 0.6500
+2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced with one of rim or greater radius.
+  * 0.2875 <= |X| <= 0.7875 on the opposite side of the last dash input
+  * 0.2875 <= |Y| < 0.6500
 
 Conditionally Inaccessible Buttons:
 
