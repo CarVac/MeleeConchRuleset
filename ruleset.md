@@ -231,7 +231,7 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 
 The following Control Stick coordinates must not be targeted using Digital Inputs (prior to RNG fuzzing):
 
-1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be targeted while |X| < 0.7000.
+1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be targeted while |X| < 0.7000 unless accessed via a combination of modifiers that includes a C-stick button. (the c-stick will buffer roll/spotdodge/jump instead of shield dropping)
 2. Firefox Angles: All target coordinates must meet one of the following three criteria:
   * 22.96° < atan(|Y/X|) < 67.04° (current B0XX angles)
   * |X| <= 0.2750 (within the X deadzone)
