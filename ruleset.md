@@ -208,20 +208,7 @@ Filters may be linearly chained so that the output of one is used as the input t
 
 ### Digital Input, Analog Stick Outputs
 
-When simultaneous opposing cardinal Digital Inputs are pressed, the output must be resolved according to one of the following options:
-
-1. Neutral: when opposing cardinals are pressed, the output must be 0 in that axis.
-2. Second-Input Priority, No Reactivation (2IP No Reactivation): when one cardinal is already pressed and its opposing cardinal is also pressed, the output follows the second cardinal. However, if the second cardinal is released, the output must be 0 instead of *reactivating* the first cardinal.
-
-(these are intended to prevent overly strong dashdance timing mixups)
-
-**For future research: travel time emulation in combination with various SOCD versions**
-
-**For future research: restrictions on combinations of coordinates accessible as a single modifier set**
-
-Modifier Inputs used to influence the output coordinate of an Analog Stick may not change the Zone (neutral, cardinal in the deadzone, or diagonal quadrant) of the coordinate. WHAT ABOUT ANGLED FSMASH
-
-B, when used as a Modifier Input, cannot change the targeted Analog Stick Output angle more than 0.5 degrees.
+When simultaneous opposing cardinal Digital Inputs are pressed, the output must be resolved according to Neutral SOCD: when opposing cardinals are pressed, the output must be 0 in that axis.
 
 The following Analog Stick coordinates must not be accessible using Digital Inputs for either the Control Stick or the C-Stick:
 
@@ -229,14 +216,45 @@ The following Analog Stick coordinates must not be accessible using Digital Inpu
 
 #### Digital Input, Control Stick Output
 
+##### Coordinate Fuzzing ("RNG")
+
+Each time the desired coordinate changes, for each axis there must be a 50% chance that the destination coordinate is left unchanged from the targeted coordinate, a 25% chance that it is increased by one, and a 25% chance that it is decreased by one.
+
+Exception: fuzzing is not required if that axis of the coordinate is 0.
+
+The random number generation for each axis must be independent.
+
+##### Linear Interpolation ("Travel Time")
+
+Each time the targeted coordinate changes, the output must be linearly interpolated over time from the current position (including mid-interpolation) to the targeted coordinate.
+
+The duration of the interpolation is determined by the radius of the targeted coordinate (pre-RNG) according to the following:
+
+* X^2 + Y^2 <= 6184: 12ms
+* 6185 <= X^2 + Y^2 <= 6857: 6ms
+* 6858 <= X^2 + Y^2 <= 8978: 7ms
+* 8979 <= X^2 + Y^2: 8ms
+
+##### Coordinate Restrictions
+
+With the following exceptions, all Control Stick coordinates targeted (pre-RNG) must lie inside the Melee unit circle (raw coordinate X^2 + Y^2 <= 6400).
+
+Exceptions (in integer controller coordinates about the origin):
+
+* |X| = 112, Y = 0 (1.0 X cardinal, no Y RNG)
+* X = 0, |Y| = 112 (1.0 Y cardinal, no X RNG)
+* |X| = 67, |Y| = 67 (perfect diagonal)
+* |X| = 61, Y = -56 (guaranteed vanilla shield drop and crouch-jab option select)
+* |X| = 56, Y = -61 (guaranteed jab while crouching with RNG, UCF shield drop)
+
 The following Control Stick coordinates must not be targeted using Digital Inputs (prior to RNG fuzzing):
 
-1. Shield Drop Down: Y = -0.6625, -0.6750, and -0.6875 must not be targeted while |X| < 0.7000 unless accessed via a combination of modifiers that includes a C-stick button. (the c-stick will buffer roll/spotdodge/jump instead of shield dropping)
+1. Shield Drop Straight Down: Y = -0.6625, -0.6750, and -0.6875 must not be targeted while |X| < 0.7000 unless accessed via a combination of modifiers that includes a C-stick button. (the c-stick will buffer roll/spotdodge/jump instead of shield dropping)
 2. Firefox Angles: All target coordinates must meet one of the following three criteria:
   * 22.96° < atan(|Y/X|) < 67.04° (current B0XX angles)
   * |X| <= 0.2750 (within the X deadzone)
   * |Y| <= 0.2750 (within the Y deadzone)
-3. Ice Climbers Desyncs: inputting these coordinates will cause each Ice Climber to perform different actions. Most of them are conditionally allowed given input coordinate fuzzing.
+3. Ice Climbers Desyncs: inputting any of these coordinates will cause each Ice Climber to perform different actions. Most of them are conditionally allowed given input coordinate fuzzing.
   * ~~X = ±0.8000: Popo Smash/Nana Tilt~~
   * ~~Y = ±0.6625: Popo Smash/Nana Tilt~~
   * ~~X = ±0.7000: Popo Roll, EXCEPT this is legal when Y = ±0.7000 since this is on the rim~~
@@ -248,13 +266,13 @@ The following Control Stick coordinates must not be targeted using Digital Input
   * X = +0.5250, Y = +0.6250: two different aerials, with a 1-unit keepout zone in all directions
   * X = -0.4375, Y = +0.5250: two different aerials, with a 1-unit keepout zone in all directions
 4. 2-Frame Turnaround Uptilt and Downtilt
-  * atan(|Y/X|) >= 50° (forward tilt instead of uptilt/downtilt)
-  * -0.6875 <= Y <= 0.6500 (produce a downsmash or tap jump/upsmash)
-  * |X| >= 0.2875 (outside the X deadzone)
+  * |X| >= 0.2875 AND -0.6875 <= Y <= 0.6500 AND atan(|Y/X|) > 50°
 5. Aerial Up-B Without Midair Jump
   * Y >= 0.5500, Y <= 0.6500 (no keep-out zone)
 6. Peach Parasol Dash 2f window: the following coordinates must be inaccessible
   * 56.95° <= atan(Y/|X|) <= 60.10° while Y >= 0.2875 (no 1-unit keep-out zone)
+7. Stronger diagonal DI than accessible on stick:
+  * |X|+|Y| = 1.4125
 7. Pikachu/Pichu Double Up-B: The following four coordinates, which allow Pikachu and Pichu to move twice in the same direction during an Up-B, must not be accessible: (using any of these coordinates makes the second step go in the same direction as the first)
   * ~~X = ±0.5000, Y < ±0.2875~~ Note: may be banned in an update if found to be abusable at 50% chance
   * ~~X < ±0.2875, Y = ±0.5000~~ Note: may be banned in an update if found to be abusable at 50% chance
@@ -265,7 +283,7 @@ Conditionally Inaccessible Coordinates:
 
 1. If one of the following coordinates occurs within at least 2 frames after the last input where Y < 0, the following coordinates must be promoted to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-rim coordinate) for at least 2 frames.
   * 0.2875 <= |Y| <= 0.6500
-2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced with one of rim or greater radius.
+2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced with one of rim or greater radius at the same angle.
   * 0.2875 <= |X| <= 0.7875 on the opposite side of the last dash input
   * 0.2875 <= |Y| <= 0.6500
 
@@ -276,6 +294,14 @@ After performing an empty pivot, which is defined as crossing from one horizonta
 Maybe have uptilt nerf be a jump input instead of an A lockout
 
 If an A Input actuation that began in a forbidden stick condition is still active when the condition ends (when the stick moves out of those coordinate ranges or when the lockout window ends), the A Output must not be activated. (do not let you get the earliest possible banned action for free by buffering)
+
+Modifiers:
+
+Compared to the unmodified 8 primary directions, Modifiers may not move a coordinate in or out of any of the deadzones.
+
+For any given set of Modifiers (dedicated and non-dedicated), it should not be possible to have coordinates where:
+
+1. Down maintains a crouch, and down+side enters dash (one-button DBOOC)
 
 #### Digital Input, C-Stick Output
 
