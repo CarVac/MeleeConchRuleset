@@ -303,6 +303,8 @@ For any given set of Modifiers (dedicated and non-dedicated), it should not be p
 
 1. Down maintains a crouch, and down+side enters dash (one-button DBOOC)
 
+Controllers may have up to 6 non-interacting Dedicated Modifiers, 3 mutually interacting Dedicated Modifiers, or 2 Dedicated Modifiers plus 4 Non-Dedicated Modifiers that are used as C-Stick digital inputs, plus B to increase radius.
+
 #### Digital Input, C-Stick Output
 
 The following C-Stick coordinates must not be accessible using Digital Inputs:
