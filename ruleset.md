@@ -85,7 +85,7 @@ Digital Outputs consist of A, B, X, Y, Z, L digital, R digital, the four D-pad d
 
 If any Input influences A, X, Y, Z, D-pad directions, or Start Outputs, then it may not influence any other Output. (limiting rectangle modifiers)
 
-If any Input influences the B Output, it may only influence other outputs as a Modifier Input. (limiting rectangle modifiers)
+If any Input influences the B Output, it may only influence other outputs as a Non-Dedicated Modifier Input. (limiting rectangle modifiers)
 
 If any Input influences L Digital or R Digital Outputs, it may either simultaneously actuate the corresponding Analog Trigger Output to a fixed value, or it may influence other outputs only as a Modifier Input. (limiting rectangle modifiers)
 
@@ -281,19 +281,11 @@ The following Control Stick coordinates must not be targeted using Digital Input
 
 Conditionally Inaccessible Coordinates:
 
-1. If one of the following coordinates occurs within at least 2 frames after the last input where Y < 0, the following coordinates must be promoted to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-rim coordinate) for at least 2 frames.
+1. If one of the following coordinates occurs within at least 2 frames after the last input where Y < 0, the following coordinates must be promoted to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-80-radius coordinate) for at least 2 frames.
   * 0.2875 <= |Y| <= 0.6500
-2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced with one of rim or greater radius at the same angle.
-  * 0.2875 <= |X| <= 0.7875 on the opposite side of the last dash input
-  * 0.2875 <= |Y| <= 0.6500
-
-Conditionally Inaccessible Buttons:
-
-After performing an empty pivot, which is defined as crossing from one horizontal cardinal to the other, then dropping below |X| = 0.8000 within 2 frames, any A Input actuations beginning during certain lockout windows are to be prevented from Influencing the A Output if the stick is in the following coordinate ranges: **??? to be defined better** (this is the B0XX pivot uptilt and downtilt nerfs)
-
-Maybe have uptilt nerf be a jump input instead of an A lockout
-
-If an A Input actuation that began in a forbidden stick condition is still active when the condition ends (when the stick moves out of those coordinate ranges or when the lockout window ends), the A Output must not be activated. (do not let you get the earliest possible banned action for free by buffering)
+2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced as specified:
+  * 0.2875 <= Y <= 0.6500: Set Y to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-rim coordinate) as long as this slight up input is maintained.
+  * -0.6500 <= Y <= -0.2875: Replace the angle with a coordinate of an equivalent angle (less than 0.5 degree difference) at a radius of at least 80.
 
 Modifiers:
 
@@ -301,9 +293,11 @@ Compared to the unmodified 8 primary directions, Modifiers may not move a coordi
 
 For any given set of Modifiers (dedicated and non-dedicated), it should not be possible to have coordinates where:
 
-1. Down maintains a crouch, and down+side enters dash (one-button DBOOC)
+* Down maintains a crouch, and down+side enters dash (one-button DBOOC)
 
-Controllers may have up to 6 non-interacting Dedicated Modifiers, 3 mutually interacting Dedicated Modifiers, or 2 Dedicated Modifiers plus 4 Non-Dedicated Modifiers that are used as C-Stick digital inputs, plus B to increase radius.
+Controllers may have up to 6 non-interacting Dedicated Modifiers, 3 pairwise-interacting Dedicated Modifiers, or 2 non-interacting Dedicated Modifiers plus 4 Non-Dedicated Modifiers that are used as C-Stick digital inputs.
+
+B may be used as a non-dedicated modifier to increase radius so long as the angle does not change by more than 0.5 degrees.
 
 #### Digital Input, C-Stick Output
 

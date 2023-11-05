@@ -50,9 +50,9 @@
     {
         "name": "Solo Nana ice-block keep-out",
         "color": [
-            46,
-            194,
-            126,
+            255,
+            190,
+            111,
             255
         ],
         "quadrants": [
@@ -74,9 +74,9 @@
     {
         "name": "Two different aerials 2 keep-out",
         "color": [
-            46,
-            194,
-            126,
+            255,
+            190,
+            111,
             255
         ],
         "quadrants": [
@@ -234,6 +234,30 @@
         "minY": 0,
         "maxX": 80,
         "maxY": 80,
+        "angleMin": 56.95,
+        "angleMax": 60.1,
+        "magnitudeMin": 0,
+        "magnitudeMax": 80
+    },
+    {
+        "name": "Near Y deadzone (shorthop) keep-out (recommended)",
+        "color": [
+            46,
+            194,
+            126,
+            255
+        ],
+        "quadrants": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "displayMode": 0,
+        "minX": 22,
+        "minY": 22,
+        "maxX": 25,
+        "maxY": 24,
         "angleMin": 56.95,
         "angleMax": 60.1,
         "magnitudeMin": 0,
