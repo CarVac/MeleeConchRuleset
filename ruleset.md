@@ -68,6 +68,8 @@ Generally, any placement of Inputs on the controller is permitted. (Rectangles e
 
 However, the controls may be manipulated by no more than 2 limbs. (No bite buttons, no footpedals, unless you have no use of an arm)
 
+Additionally, the C-Stick buttons must be arranged around the A button, with C-Up being within 30 degrees of the "up" direction (defined as the direction away from the player's torso along the centerline of the controller), C-Down being within 65 degrees of the "down" direction, and C-Left and C-Right being at least 30 degrees away from the up or down directions.
+
 Aside from Combined Analog Digital Inputs (CADI), Emulated CADI, and orthogonal axes of a control stick Analog Input, Inputs must not share Actuators in a way that makes it difficult or impossible to actuate one without actuating another. (no physical macros)
 
 Inputs must not have two separate Actuators that both influence the value read by that Input. (no physical duplication of a single electrical button)
