@@ -354,8 +354,8 @@
         "minY": 0,
         "maxX": 80,
         "maxY": 80,
-        "angleMin": 0,
-        "angleMax": 90,
+        "angleMin": 1,
+        "angleMax": 89,
         "magnitudeMin": 79.76,
         "magnitudeMax": 80
     }
