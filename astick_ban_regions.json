@@ -168,7 +168,7 @@
         "magnitudeMax": 80
     },
     {
-        "name": "Shield drop down",
+        "name": "Shield drop down (allowed with cstick modifiers)",
         "color": [
             181,
             131,
