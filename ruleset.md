@@ -68,7 +68,7 @@ It must not be possible to simultaneously connect two controllers to one wireles
 
 Generally, any placement of Inputs on the controller is permitted. (Rectangles exist, therefore full button swapping must be legal)
 
-However, the controls may be manipulated by no more than 2 limbs. (No bite buttons, no footpedals, unless you have no use of an arm)
+However, the controls may be manipulated by no more than 2 limbs. (No bite buttons, no footpedals, except with TO approval)
 
 Additionally, unless they occupy the same location as the C-Stick below the buttons on the top face akin to a standard Gamecube Controller reachable only by the thumbs, the C-Stick buttons must be arranged around the A button, with C-Up being within 30 degrees of the "up" direction (defined as the direction away from the player's torso along the centerline of the controller), C-Down being within 65 degrees of the "down" direction, and C-Left and C-Right being at least 30 degrees away from the up or down directions. (C-Pad is okay, B0XX is okay, some placement flexibility but limited independence of cstick down input)
 
@@ -227,7 +227,7 @@ When simultaneous opposing cardinal Digital Inputs are pressed, the output must 
 
 #### Coordinate Set Changing
 
-When controlled by digital inputs, the target coordinates may not be changed during a match. Switching between analog inputs and digital inputs for control stick output is permitted.
+When controlled by digital inputs, the target coordinates may not be changed during a match.
 
 #### Digital Input, Control Stick Output
 
@@ -303,6 +303,13 @@ Conditionally Inaccessible Coordinates:
 2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced as specified:
   * 0.2875 <= Y <= 0.6500: Set Y to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-rim coordinate) as long as this slight up input is maintained.
   * -0.6500 <= Y <= -0.2875: Replace the angle with a coordinate of an equivalent angle (less than 0.5 degree difference) at a radius of at least 80.
+3. Airdodge Angles: While L or R digital are pressed, all target coordinates must additionally meet one of the following three criteria. If L or R is used as a non-dedicated modifier to meet these angle requirements, if L or R is changed mid-interpolation, then the current interpolation in progress may proceed as if the target destination has always been the new destination, in order to prevent inherently inconsistent wavedash angles.
+  * 27° < atan(|Y/X|) < 70°
+  * |X| <= 0.2750 (within the X deadzone)
+  * |Y| <= 0.2750 (within the Y deadzone)
+4. Instant Turnaround Neutral B: While B is pressed, the following target coordinates are prohibited. If these coordinates are accessible, B must be used as a non-dedicated modifier to increase the stick magnitude in the X direction so that the target coordinate no longer falls into this region.
+  * 0.2875 <= |X| <= 0.5875
+  * |Y| <= 0.5375
 
 ##### Smash Directional Influence Restrictions
 
