@@ -152,6 +152,8 @@ The same coordinate restrictions apply as for Digital Input, C-Stick Output.
 
 ### Analog Input, Analog Stick Outputs
 
+Scaling Restriction: If the input/output mapping of a two-axis analog input can be calibrated by the user, the resulting calibration must be able to access at least 90 controller units away from the origin but no more than 110 units.
+
 Remapping Restriction: Coordinates may only be remapped by changing their angle from the origin, never their distance.
 
 * Any such angle remapping must be static. (This isn't allowed to change based on any circumstances, whether that be stick inputs or button inputs)
