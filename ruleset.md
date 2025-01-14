@@ -306,7 +306,7 @@ Conditionally Inaccessible Coordinates:
   * 0.2875 <= Y <= 0.6500: Set Y to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-rim coordinate) as long as this slight up input is maintained.
   * -0.6500 <= Y <= -0.2875: Replace the angle with a coordinate of an equivalent angle (less than 0.5 degree difference) at a radius of at least 80.
 3. Airdodge Angles: While L or R digital are pressed, all target coordinates must additionally meet one of the following three criteria. If L or R is used as a non-dedicated modifier to meet these angle requirements, if L or R is changed mid-interpolation, then the current interpolation in progress may proceed as if the target destination has always been the new destination, in order to prevent inherently inconsistent wavedash angles.
-  * 27° < atan(|Y/X|) < 70°
+  * 27° < atan(|Y/X|) < 73°
   * |X| <= 0.2750 (within the X deadzone)
   * |Y| <= 0.2750 (within the Y deadzone)
 4. Instant Turnaround Neutral B: While B is pressed, the following target coordinates are prohibited. If these coordinates are accessible, B must be used as a non-dedicated modifier to increase the stick magnitude in the X direction so that the target coordinate no longer falls into this region.
