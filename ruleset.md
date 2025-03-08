@@ -305,7 +305,7 @@ Conditionally Inaccessible Coordinates:
 2. For at least 8 frames after the last input that has >=50% probability of succeeding at an empty pivot (crossing from one dash coordinate |X| >= 0.8 to the other within at least 15 frames, then remaining in the new dash coordinate between 0.5 and 1.5 frames inclusive), any coordinates meeting either of the following criteria must be replaced as specified:
   * 0.2875 <= Y <= 0.6500: Set Y to a tap jump coordinate (X <= 0.7375, Y >= 0.6625, or equivalent beyond-rim coordinate) as long as this slight up input is maintained.
   * -0.6500 <= Y <= -0.2875: Replace the angle with a coordinate of an equivalent angle (less than 0.5 degree difference) at a radius of at least 80.
-3. Airdodge Angles: While L or R digital are pressed, all target coordinates must additionally meet one of the following three criteria. If L or R is used as a non-dedicated modifier to meet these angle requirements, if L or R is changed mid-interpolation, then the current interpolation in progress may proceed as if the target destination has always been the new destination, in order to prevent inherently inconsistent wavedash angles.
+3. Airdodge Angles: While L or R digital are pressed, all target coordinates must additionally meet one of the following three criteria. If L or R is used as a non-dedicated modifier, and if L or R is changed mid-interpolation, then the current interpolation in progress may proceed as if the target destination has always been the new destination, in order to prevent inherently inconsistent wavedash angles. If L and R are used as non-dedicated modifiers, then they must target the same coordinates.
   * 27° < atan(|Y/X|) < 73°
   * |X| <= 0.2750 (within the X deadzone)
   * |Y| <= 0.2750 (within the Y deadzone)
