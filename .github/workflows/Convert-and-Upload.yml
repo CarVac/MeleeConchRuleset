@@ -1,0 +1,48 @@
+name: Convert and Upload Markdown to Word
+permissions:
+  contents: write
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "PR" branch
+  push:
+    branches: [ "convert-word" ]
+  pull_request:
+    branches: [ "convert-word" ]
+  workflow_dispatch:
+
+jobs:
+  convert_via_pandoc:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+    # change document names here
+      INPUT: ruleset.md
+      OUTPUT: ruleset.docx
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug environment
+        run: |
+          pwd
+          ls
+      - uses: pandoc/actions/setup@v1
+      - name: Convert .md to Word
+        run: |
+          # Run pandoc in verbose mode and capture output
+          set -o pipefail
+          pandoc --standalone --verbose --output="$OUTPUT" "$INPUT" 2>&1 | tee pandoc.log
+          if grep -q "image not found" pandoc.log; then
+            echo "❌ Pandoc could not find the image."
+            exit 1
+          fi
+      - name: Commit and Push
+        run: |
+          OWNER=$(echo $GITHUB_REPOSITORY | cut -d'/' -f1)
+          REPO=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$OWNER/$REPO.git
+          git add "$OUTPUT"
+          git commit -am "update word"
+          git push
