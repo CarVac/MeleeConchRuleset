@@ -1,13 +1,10 @@
 name: Convert and Upload Markdown to Word
 permissions:
   contents: write
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "PR" branch
   push:
-    branches: [ "convert-word" ]
-  pull_request:
-    branches: [ "convert-word" ]
+    # change document name here
+    paths: &input "ruleset.md"
   workflow_dispatch:
 
 jobs:
@@ -15,8 +12,8 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     env:
-    # change document names here
-      INPUT: ruleset.md
+      INPUT: *input
+      # change document output here
       OUTPUT: ruleset.docx
     steps:
       - uses: actions/checkout@v4
