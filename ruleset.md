@@ -60,7 +60,7 @@ At a TO's discretion, exceptions may be made to accommodate players with limited
 
 ## Communications
 
-All communication between the controller and console must be either via wires or a wireless protocol that prevents interference.
+All communication between the controller and console must be either via wired or a wireless protocol that prevents interference.
 
 It must not be possible to simultaneously connect two controllers to one wireless receiver, or one controller to two wireless receivers. (The Wavebird is not permitted.)
 
