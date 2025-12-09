@@ -102,7 +102,7 @@ Each Digital Output must not have any delayed response to any change in the stat
 
 EXCEPTION: Lockouts and other transfer functions related to Digital Input, Analog Output controls (rectangle nerfs)
 
-EXCEPTION: Start and D-pad inputs may have >1s delayed responses imposed by various means to reduce the likelihood of misinputs.
+EXCEPTION: Start and D-pad inputs may have delayed responses imposed by various means to reduce the likelihood of misinputs. Additionally, the delay may be bypassed by a combination of Digital Inputs. They may also have direct access made available by a combination of Digital Inputs.
 
 EXCEPTION: A macro or button combination that simultaneously presses all of Digital L, Digital R, A, and Start is permitted.
 
